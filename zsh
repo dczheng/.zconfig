@@ -25,7 +25,7 @@ arch_env() {
     export LC_CTYPE=en_US.UTF-8
 }
 
-shadowsocks_start() {
+start_shadowsocks() {
     ipaddr=`ip addr | grep inet | grep wlp3s0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     echo "update arch-wlan ($ipaddr) in /etc/hosts ..."
     sudo sed -i 's/.*arch-wlan/'"$ipaddr"' arch-wlan/' /etc/hosts
