@@ -28,6 +28,8 @@ while( True ):
         i += 2
     #print( charge_state )
     pm_info += '\n' + time.asctime(time.localtime(time.time())) + '\n'
+    if ( charge_state == 1 ):
+        sleep_time = 5
     if ( bat_value <= bat_value_lim and charge_state == 0 ):
         pm_win = tk.Tk()
         pm_win.title( 'powermanager' )
@@ -41,6 +43,6 @@ while( True ):
         pm_label.pack()
         pm_button.pack()
         pm_win.mainloop()
-        if ( bat_value <= 3 ):
+        if ( bat_value <= 5 ):
             sleep_time = 1
     time.sleep( sleep_time * 60 )
