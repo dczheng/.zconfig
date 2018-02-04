@@ -37,7 +37,7 @@ while( True ):
         win_ypos = pm_win.winfo_screenheight() // 2 - win_height // 2
         pm_win.geometry( '%dx%d+%d+%d'%(win_width, win_height, win_xpos, win_ypos) )
         pm_label = tk.Label( pm_win, text=pm_info )
-        pm_button = tk.Button( pm_win, text='Close', command=pm_win.quit )
+        pm_button = tk.Button( pm_win, text='Close', command=pm_win.destroy )
         pm_label.pack()
         pm_button.pack()
         pm_win.mainloop()
