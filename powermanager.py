@@ -20,9 +20,15 @@ while( True ):
         pm_info += tmp
         if ( bat_info[i] == 'percentage:' ):
             bat_value = float(bat_info[i+1][:-1])
+        if ( bat_info[i] == 'state:' ):
+            if (bat_info[i+1] == 'discharging'):
+                charge_state = 0
+            else:
+                charge_state = 1
         i += 2
+    #print( charge_state )
     pm_info += '\n' + time.asctime(time.localtime(time.time())) + '\n'
-    if ( bat_value <= bat_value_lim ):
+    if ( bat_value <= bat_value_lim and charge_state == 0 ):
         pm_win = tk.Tk()
         pm_win.title( 'powermanager' )
         win_width = 150
