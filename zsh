@@ -41,6 +41,10 @@ touchpad_off() {
     xinput set-prop 'Synaptics TM3075-002' 'Device Enabled' 0
 }
 
+battary_info() {
+    upower -i $(upower -e | grep 'BAT') | grep -E "state|percentage"
+}
+
 HOST=`hostname`
 
 if [ $HOST = 'archlinux' ]
@@ -52,3 +56,5 @@ then
 else
      echo "Unsupported host"
 fi
+
+export TIME_STYLE='+%Y/%m/%d %H:%M:%S'

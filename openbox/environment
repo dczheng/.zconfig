@@ -8,4 +8,8 @@
 
 # To set your keyboard layout, you need to modify your X config:
 # http://www.google.com/search?q=how+to+set+keyboard+layout+xorg
-export PATH=/home/dczheng/local/usr/mathematica_10.0/bin:$PATH
+HOST=`hostname`
+if [ $HOST = 'archlinux' ]
+then
+    export PATH=/home/dczheng/local/usr/mathematica_10.0/bin:$PATH
+fi

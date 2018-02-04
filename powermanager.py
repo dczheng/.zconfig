@@ -3,7 +3,8 @@ import tkinter as tk
 import time
 import os
 
-sleep_time = 10 #min
+sleep_time = 5 #min
+bat_value_lim = 10
 
 while( True ):
     pm_info = '\nWARNING !!!\n\n'
@@ -21,7 +22,7 @@ while( True ):
             bat_value = float(bat_info[i+1][:-1])
         i += 2
     pm_info += '\n' + time.asctime(time.localtime(time.time())) + '\n'
-    if ( bat_value < 100 ):
+    if ( bat_value <= bat_value_lim ):
         pm_win = tk.Tk()
         pm_win.title( 'powermanager' )
         win_width = 150
@@ -34,5 +35,4 @@ while( True ):
         pm_label.pack()
         pm_button.pack()
         pm_win.mainloop()
-        break
     time.sleep( sleep_time * 60 )

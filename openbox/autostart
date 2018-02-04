@@ -15,5 +15,11 @@
 # If you want to use XFCE config tools...
 #
 #xfce-mcs-manager &
-xbacklight -set 30
-terminator
+HOST=`hostname`
+if [ $HOST = 'archlinux' ]
+then
+    xbacklight -set 30
+    xinput set-prop 'Synaptics TM3075-002' 'Device Enabled' 0
+    /home/dczheng/.zconfig/powermanager.py &
+    terminator
+fi
