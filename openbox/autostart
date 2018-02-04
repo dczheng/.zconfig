@@ -21,5 +21,5 @@ then
     xbacklight -set 30
     xinput set-prop 'Synaptics TM3075-002' 'Device Enabled' 0
     /home/dczheng/.zconfig/powermanager.py &
-    terminator
+    terminator &
 fi
