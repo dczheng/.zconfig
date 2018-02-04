@@ -41,4 +41,6 @@ while( True ):
         pm_label.pack()
         pm_button.pack()
         pm_win.mainloop()
+        if ( bat_value < 3 ):
+            sleep_time = 1
     time.sleep( sleep_time * 60 )
