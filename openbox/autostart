@@ -20,10 +20,18 @@ if [ $HOST = 'archlinux' ]
 then
     xbacklight -set 30
     xinput set-prop 'Synaptics TM3075-002' 'Device Enabled' 0
+
     flag=`ps aux | grep powermanager.py | grep -v 'grep'`
     if [ $flag'x' = 'x' ]
     then
         /home/dczheng/.zconfig/powermanager.py &
     fi
+
+    flag=`ps aux | grep ibus-daemon | grep -v 'grep'`
+    if [ $flag'x' = 'x' ]
+    then
+        ibus-daemon &
+    fi
+
     terminator &
 fi
