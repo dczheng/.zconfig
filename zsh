@@ -27,8 +27,6 @@ arch_env() {
 
 debian_env() {
     export TIME_STYLE='+%Y/%m/%d %H:%M:%S'
-    xrandr --output VGA-1 --mode  1920x1080  
-    xrandr --output DVI-D-1 --mode 1280x1024 --right-of VGA-1
     alias vi="vim"
     alias pdf="evince &> /dev/null"
     alias fmg="thunar &> /dev/null"
