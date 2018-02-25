@@ -16,6 +16,12 @@
 #
 #xfce-mcs-manager &
 HOST=`hostname`
+flag=`ps aux | grep ibus-daemon | grep -v 'grep'`
+if [ $flag'x' = 'x' ]
+then
+    ibus-daemon &
+fi
+
 if [ $HOST = 'archlinux' ]
 then
     xbacklight -set 30
@@ -26,12 +32,10 @@ then
     then
         /home/dczheng/.zconfig/powermanager.py &
     fi
-
-    flag=`ps aux | grep ibus-daemon | grep -v 'grep'`
-    if [ $flag'x' = 'x' ]
-    then
-        ibus-daemon &
-    fi
-
     terminator &
+elif [ $HOST = 'debian' ]
+then
+    terminator -l zconf &
+else
+    echo "Unsupported host"
 fi
