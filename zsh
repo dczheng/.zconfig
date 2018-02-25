@@ -68,12 +68,35 @@ debian_env() {
     cowsay "Welcome to dczheng's Debian Linux"
 }
 
-start_shadowsocks() {
+start_shadowsocks_arch() {
     ipaddr=`ip addr | grep inet | grep wlp3s0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     echo "update arch-wlan ($ipaddr) in /etc/hosts ..."
     sudo sed -i 's/.*arch-wlan/'"$ipaddr"' arch-wlan/' /etc/hosts
     echo "start shadowsocks ... "
     sudo systemctl start shadowsocks-libev@dczheng.service
+}
+
+start_shadowsocks_debian() {
+    ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
+    echo "update debian-wlan ($ipaddr) in /etc/hosts ..."
+    sudo sed -i 's/.*debian-wlan/'"$ipaddr"' debian-wlan/' /etc/hosts
+    echo "start shadowsocks ... "
+    sudo systemctl start shadowsocks-libev-local@dczheng.service
+}
+
+start_shadowsocks() {
+
+    HOST=`hostname`
+
+    if [ $HOST = 'archlinux' ]
+    then
+        start_shadowsocks_arch
+    elif [ $HOST = 'debian' ]
+    then
+        start_shadowsocks_debian
+    else
+        echo "Unsupported host"
+    fi
 }
 
 touchpad_on() {
