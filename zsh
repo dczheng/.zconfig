@@ -48,10 +48,6 @@ debian_env() {
     alias cdl="cd /home/dczheng/Work/lian"
     alias cdg="cd /home/dczheng/Work/gadget"
     alias cda="cd /home/dczheng/Work/gadget/analysis"
-    export P_D="/home/dczheng/Zdata/documents/physics"
-    export M_D="/home/dczheng/Zdata/documents/math"
-    export C_D="/home/dczheng/Zdata/documents/computer"
-    export PA_D="/home/dczheng/Zdata/documents/paper"
 
     export PATH=$PATH:/home/dczheng/Work/gadget/scripts
 
