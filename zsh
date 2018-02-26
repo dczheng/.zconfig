@@ -1,21 +1,14 @@
-
 arch_env() {
     cowsay "Welcome to dczheng's Arch Linux"
-    alias vi="vim"
-    alias sudo=" sudo "
-    alias cdw="cd /home/dczheng/work"
     alias cdp="cd /home/dczheng/data/documents/physics"
     alias cdm="cd /home/dczheng/data/documents/math"
     alias cdc="cd /home/dczheng/data/documents/computer"
     alias cdpa="cd /home/dczheng/data/documents/paper"
-    alias cdd="cd /home/dczheng/Downloads"
-    alias df="df -h"
-    alias pdf="evince 2>&1 >> /dev/null"
-    alias sd="shutdown -h now"
     alias cdl="cd /home/dczheng/local"
     alias cdg="cd /home/dczheng/work/gadget"
     alias cda="cd /home/dczheng/work/gadget/analysis"
     alias cdz="cd /home/dczheng/data"
+
     export PATH=$PATH:/home/dczheng/local/bin:/home/dczheng/local/bin/public
     export PATH=/home/dczheng/local/bin:$PATH
     export LD_LIBRARY_PATH=/home/dczheng/local/lib:$LD_LIBRARY_PATH
@@ -27,22 +20,12 @@ arch_env() {
 
 debian_env() {
     export TIME_STYLE='+%Y/%m/%d %H:%M:%S'
-    alias vi="vim"
-    alias pdf="evince &> /dev/null"
-    alias fmg="thunar &> /dev/null"
-    alias firefox="firefox &> /dev/null"
-    alias gedit="gedit &> /dev/null"
-    alias cdd="cd /home/dczheng/Downloads"
     alias cdw="cd /home/dczheng/Work"
     alias cdp="/home/dczheng/Zdata/documents/physics"
     alias cdm="/home/dczheng/Zdata/documents/math"
     alias cdc="/home/dczheng/Zdata/documents/computer"
     alias cdpa="/home/dczheng/Zdata/documents/paper"
     alias cdz="/home/dczheng/Zdata"
-    alias sudo="sudo  "
-    alias reboot="sudo reboot"
-    alias df="df -lh"
-    alias top="htop"
     alias cdl="cd /home/dczheng/Work/lian"
     alias cdg="cd /home/dczheng/Work/gadget"
     alias cda="cd /home/dczheng/Work/gadget/analysis"
@@ -83,9 +66,7 @@ start_shadowsocks_debian() {
 }
 
 start_shadowsocks() {
-
     HOST=`hostname`
-
     if [ $HOST = 'archlinux' ]
     then
         start_shadowsocks_arch
@@ -109,14 +90,57 @@ battary_info() {
     upower -i $(upower -e | grep 'BAT') | grep -E "state|percentage"
 }
 
-HOST=`hostname`
+scp_caa() {
+    echo "send $1 to caa ..."
+    scp $1 dczheng@caa:~
+}
 
-if [ $HOST = 'archlinux' ]
-then
-     arch_env
-elif [ $HOST = 'debian' ]
-then
-     debian_env
-else
-     echo "Unsupported host"
-fi
+scp_astro() {
+    echo "send $1 to astro ..."
+    scp -P 6600 $1 astro@astro:~
+}
+
+scp_s1() {
+    echo "send $1 to sao1 ..."
+    scp $1 dczheng@sao:~
+}
+scp_s2() {
+    echo "send $1 to sao2 ..."
+    scp -P 6666 $1 dczheng@guotsuan.asuscomm.com:~
+}
+
+set_env() {
+    clear
+    echo "set environment ..."
+    date
+    alias vi="vim"
+    alias sudo=" sudo "
+    alias pdf="evince 2>&1 >> /dev/null"
+    alias df="df -lh"
+    alias cdw="cd /home/dczheng/work"
+    alias cdd="cd /home/dczheng/Downloads"
+    alias fmg="thunar &> /dev/null"
+    alias firefox="firefox &> /dev/null"
+    alias gedit="gedit &> /dev/null"
+    alias reboot="sudo reboot"
+    alias sd="sudo shutdown -h now"
+
+    alias ssh_caa="ssh dczheng@caa"
+    alias ssh_astro="ssh -p 6600 astro@astro"
+    alias ssh_wang="ssh -p 8080 wang@wang"
+    alias ssh_s1="ssh dczheng@sao"
+    alias ssh_s2="ssh -p 6666 dczheng@guotsuan.asuscomm.com"
+
+    HOST=`hostname`
+    if [ $HOST = 'archlinux' ]
+    then
+        arch_env
+    elif [ $HOST = 'debian' ]
+    then
+        debian_env
+    else
+        echo "Unsupported host"
+    fi
+}
+
+set_env

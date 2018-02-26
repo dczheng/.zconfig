@@ -36,7 +36,7 @@ then
 elif [ $HOST = 'debian' ]
 then
     terminator -l zconf &
-    xrandr --output VGA-1 --mode  1920x1080  
+    xrandr --output VGA-1 --mode  1920x1080
     xrandr --output DVI-D-1 --mode 1280x1024 --right-of VGA-1
 else
     echo "Unsupported host"
