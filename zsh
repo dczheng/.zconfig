@@ -143,4 +143,14 @@ set_env() {
     fi
 }
 
-set_env
+djvu2pdf() {
+    if [ $1'x' != 'x' ] 
+    then
+        ddjvu -format=tiff $1 "tmp.tiff"
+        tiff2pdf -j -o $1".pdf" "tmp.tiff"
+        rm tmp.tiff
+    else
+        echo "Please input pdf file"
+    fi
+}
+
