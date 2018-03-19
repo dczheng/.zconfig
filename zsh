@@ -80,7 +80,7 @@ start_shadowsocks() {
     fi
 }
 
-start_shadowsocks() {
+start_synergy() {
     ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     HOST=`hostname`
     if [ $HOST = 'archlinux' ]
