@@ -81,7 +81,6 @@ start_shadowsocks() {
 }
 
 start_synergy() {
-    ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     HOST=`hostname`
     flag=`ps aux | grep synergy | grep -v "grep"`
     if [ $HOST = 'archlinux' ]
@@ -89,7 +88,7 @@ start_synergy() {
         if [ 'x'$flag = 'x' ]
         then
             echo "start synergy client ..."
-            synergy-core --client $1
+            synergy-core --client 172.168.1.1
         else
             echo "synergy already start!"
         fi
@@ -97,7 +96,7 @@ start_synergy() {
         if [ 'x'$flag = 'x' ]
         then
             echo "start synergy server ..."
-            synergy-core --server -a $ipaddr -c ~/.zconfig/synergy.conf
+            synergy-core --server -a 172.168.1.1 -c ~/.zconfig/synergy.conf
         else
             echo "synergy already start!"
         fi
