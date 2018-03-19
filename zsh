@@ -55,7 +55,7 @@ start_shadowsocks_arch() {
     ipaddr=`ip addr | grep inet | grep wlp3s0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     echo "update arch-wlan ($ipaddr) in /etc/hosts ..."
     sudo sed -i 's/.*arch-wlan/'"$ipaddr"' arch-wlan/' /etc/hosts
-    echo "start shadowsocks ... "
+    echo "start shadowsocks on archlinux... "
     sudo systemctl start shadowsocks-libev@dczheng.service
 }
 
@@ -63,7 +63,7 @@ start_shadowsocks_debian() {
     ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     echo "update debian-wlan ($ipaddr) in /etc/hosts ..."
     sudo sed -i 's/.*debian-wlan/'"$ipaddr"' debian-wlan/' /etc/hosts
-    echo "start shadowsocks ... "
+    echo "start shadowsocks on debian... "
     sudo systemctl start shadowsocks-libev-local@dczheng.service
 }
 
@@ -84,11 +84,13 @@ start_synergy() {
     ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     HOST=`hostname`
     if [ $HOST = 'archlinux' ]
+        echo "start synergy client ..."
         synergy-core --client $1
     then
     elif [ $HOST = 'debian' ]
     then
-        synergy-core --server -d $ipaddr -c ~/.zconfig/synergy.conf
+        echo "start synergy server ..."
+        synergy-core --server -a $ipaddr -c ~/.zconfig/synergy.conf
     else
         echo "Unsupported host"
     fi
