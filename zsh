@@ -38,6 +38,8 @@ debian_env() {
     export C_INCLUDE_PATH=$C_INCLUDE_PATH:/home/dczheng/local/include
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/dczheng/local/pkgconfig
 
+    export BXSHARE=/home/dczheng/Zdata/software/bochs-2.6.9/share/bochs
+
     #source /home/dczheng/Zdata/software/Intel/icc-2016-u3/bin/iccvars.sh intel64
     #source /home/dczheng/Zdata/software/Intel/ifort-2016-u3/mkl/bin/mklvars.sh intel64
     #source /home/dczheng/Zdata/software/Intel/ifort-2016-u3/bin/ifortvars.sh intel64
@@ -78,6 +80,21 @@ start_shadowsocks() {
     fi
 }
 
+start_shadowsocks() {
+    ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
+    HOST=`hostname`
+    if [ $HOST = 'archlinux' ]
+        synergy-core --client $1
+    then
+    elif [ $HOST = 'debian' ]
+    then
+        synergy-core --server -d $ipaddr -c ~/.zconfig/synergy.conf
+    else
+        echo "Unsupported host"
+    fi
+}
+
+
 touchpad_on() {
     xinput set-prop 'Synaptics TM3075-002' 'Device Enabled' 1
 }
@@ -104,6 +121,7 @@ scp_s1() {
     echo "send $1 to sao1 ..."
     scp $1 dczheng@sao:~
 }
+
 scp_s2() {
     echo "send $1 to sao2 ..."
     scp -P 6666 $1 dczheng@guotsuan.asuscomm.com:~
