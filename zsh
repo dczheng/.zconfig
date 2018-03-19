@@ -83,16 +83,25 @@ start_shadowsocks() {
 start_synergy() {
     ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     HOST=`hostname`
+    flag=`ps aux | grep synergy | grep -v "grep"`
     if [ $HOST = 'archlinux' ]
-        echo "start synergy client ..."
-        synergy-core --client $1
     then
+        if [ 'x'$flag = 'x' ]
+        then
+            echo "start synergy client ..."
+            synergy-core --client $1
+        else
+            echo "synergy already start!"
+        fi
     elif [ $HOST = 'debian' ]
+        if [ 'x'$flag = 'x' ]
+        then
+            echo "start synergy server ..."
+            synergy-core --server -a $ipaddr -c ~/.zconfig/synergy.conf
+        else
+            echo "synergy already start!"
+        fi
     then
-        echo "start synergy server ..."
-        synergy-core --server -a $ipaddr -c ~/.zconfig/synergy.conf
-    else
-        echo "Unsupported host"
     fi
 }
 
