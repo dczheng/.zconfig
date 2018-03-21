@@ -166,7 +166,7 @@ set_env() {
     then
         debian_env
     else
-        echo "Unsupported host"
+        echo "Unsupported host!"
     fi
 }
 
