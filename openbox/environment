@@ -12,6 +12,9 @@ HOST=`hostname`
 if [ $HOST = 'archlinux' ]
 then
     export PATH=/home/dczheng/local/usr/mathematica_10.0/bin:$PATH
-fi
-xrandr --output VGA-1 --mode  1920x1080 &
-xrandr --output DVI-D-1 --mode 1280x1024 --right-of VGA-1 &
+elif [ $HOST = 'debian' ]
+then
+    xrandr --output VGA-2 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-D-1 --primary --mode 1280x1024 --pos 1920x56 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 3200x0 --rotate normal
+else
+    echo "Unupported host!"
+if
