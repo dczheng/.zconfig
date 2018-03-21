@@ -35,7 +35,7 @@ then
     terminator &
 elif [ $HOST = 'debian' ]
 then
-    terminator -l zconf &
+    
 else
     echo "Unsupported host"
 fi
