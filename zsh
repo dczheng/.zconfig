@@ -1,4 +1,4 @@
-arch_debian_pub() {
+arch_debian_env() {
     alias vi="vim"
     alias sudo=" sudo "
     alias pdf="evince &> /dev/null"
@@ -14,12 +14,11 @@ arch_debian_pub() {
     alias ssh_astro="ssh -p 6600 astro@astro"
     alias ssh_wang="ssh -p 8080 wang@wang"
     alias ssh_s1="ssh dczheng@sao"
-    alias ssh_s2="ssh -p 6666 dczheng@guotsuan.asuscomm.com"
 }
 
 arch_env() {
     cowsay "Welcome to dczheng's Arch Linux"
-    arch_debian_env()
+    arch_debian_env
     alias cdp="cd /home/dczheng/data/documents/physics"
     alias cdm="cd /home/dczheng/data/documents/math"
     alias cdc="cd /home/dczheng/data/documents/computer"
@@ -39,7 +38,7 @@ arch_env() {
 }
 
 debian_env() {
-    arch_debian_env()
+    arch_debian_env
     export TIME_STYLE='+%Y/%m/%d %H:%M:%S'
     alias cdw="cd /home/dczheng/Work"
     alias cdp="/home/dczheng/Zdata/documents/physics"
@@ -169,11 +168,6 @@ scp_astro() {
 scp_s1() {
     echo "send $1 to sao1 ..."
     scp $1 dczheng@sao:~
-}
-
-scp_s2() {
-    echo "send $1 to sao2 ..."
-    scp -P 6666 $1 dczheng@guotsuan.asuscomm.com:~
 }
 
 djvu2pdf() {
