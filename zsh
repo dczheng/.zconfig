@@ -1,5 +1,25 @@
+arch_debian_pub() {
+    alias vi="vim"
+    alias sudo=" sudo "
+    alias pdf="evince &> /dev/null"
+    alias df="df -lh"
+    alias cdw="cd /home/dczheng/work"
+    alias cdd="cd /home/dczheng/Downloads"
+    alias fmg="thunar &> /dev/null"
+    alias firefox="firefox &> /dev/null"
+    alias gedit="gedit &> /dev/null"
+    alias reboot="sudo reboot"
+    alias sd="sudo shutdown -h now"
+    alias ssh_caa="ssh dczheng@caa"
+    alias ssh_astro="ssh -p 6600 astro@astro"
+    alias ssh_wang="ssh -p 8080 wang@wang"
+    alias ssh_s1="ssh dczheng@sao"
+    alias ssh_s2="ssh -p 6666 dczheng@guotsuan.asuscomm.com"
+}
+
 arch_env() {
     cowsay "Welcome to dczheng's Arch Linux"
+    arch_debian_env()
     alias cdp="cd /home/dczheng/data/documents/physics"
     alias cdm="cd /home/dczheng/data/documents/math"
     alias cdc="cd /home/dczheng/data/documents/computer"
@@ -19,6 +39,8 @@ arch_env() {
 }
 
 debian_env() {
+    cowsay "Welcome to dczheng's Debian Linux"
+    arch_debian_env()
     export TIME_STYLE='+%Y/%m/%d %H:%M:%S'
     alias cdw="cd /home/dczheng/Work"
     alias cdp="/home/dczheng/Zdata/documents/physics"
@@ -57,6 +79,10 @@ debian_env() {
     #xset m 20 1
     screenfetch
     cowsay "Welcome to dczheng's Debian Linux"
+}
+
+dellr830_env() {
+
 }
 
 start_shadowsocks_arch() {
@@ -148,34 +174,16 @@ set_env() {
     clear
     echo "set environment ..."
     date
-    alias vi="vim"
-    alias sudo=" sudo "
-    alias pdf="evince &> /dev/null"
-    alias df="df -lh"
-    alias cdw="cd /home/dczheng/work"
-    alias cdd="cd /home/dczheng/Downloads"
-    alias fmg="thunar &> /dev/null"
-    alias firefox="firefox &> /dev/null"
-    alias gedit="gedit &> /dev/null"
-    alias reboot="sudo reboot"
-    alias sd="sudo shutdown -h now"
-
-    alias ssh_caa="ssh dczheng@caa"
-    alias ssh_astro="ssh -p 6600 astro@astro"
-    alias ssh_wang="ssh -p 8080 wang@wang"
-    alias ssh_s1="ssh dczheng@sao"
-    alias ssh_s2="ssh -p 6666 dczheng@guotsuan.asuscomm.com"
 
     HOST=`hostname`
-    if [ $HOST = 'archlinux' ]
-    then
-        arch_env
-    elif [ $HOST = 'debian' ]
-    then
-        debian_env
-    else
-        echo "Unsupported host!"
-    fi
+    case $HOST in
+        archlinux)
+            arch_env
+            ;;
+        debian)
+            debian_env
+            ;;
+    esac
 }
 
 djvu2pdf() {
