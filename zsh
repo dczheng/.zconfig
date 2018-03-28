@@ -80,8 +80,15 @@ debian_env() {
     cowsay "Welcome to dczheng's Debian Linux"
 }
 
-dellr830_env() {
-
+cluster_env() {
+    export PATH=/home/dczheng/local/bin:$PATH
+    export LD_LIBRARY_PATH=/home/dczheng/local/lib:$LD_LIBRARY_PATH
+    export LIBRARY_PATH=/home/dczheng/local/lib:$LIBRARY_PATH
+    export C_INCLUDE_PATH=/home/dczheng/local/include:$C_INCLUDE_PATH
+    export MANPATH=/home/dczheng/local/man:$MANPATH
+    export PKG_CONFIG_PATH=/home/dczhen/local/pkgconfig:$$PKG_CONFIG_PATH
+    alias cds=/home/dczheng/simulation
+    alias cdt=/home/dczheng/gadget-tools
 }
 
 start_shadowsocks_arch() {
@@ -169,6 +176,17 @@ scp_s2() {
     scp -P 6666 $1 dczheng@guotsuan.asuscomm.com:~
 }
 
+djvu2pdf() {
+    if [ $1'x' != 'x' ] 
+    then
+        ddjvu -format=tiff $1 "tmp.tiff"
+        tiff2pdf -j -o $1".pdf" "tmp.tiff"
+        rm tmp.tiff
+    else
+        echo "Please input pdf file"
+    fi
+}
+
 set_env() {
     clear
     echo "set environment ..."
@@ -182,18 +200,13 @@ set_env() {
         debian)
             debian_env
             ;;
+        dellr830.localdomain)
+            cluster_env
+            ;;
+        scnode*)
+            cluster_env
+            ;;
     esac
-}
-
-djvu2pdf() {
-    if [ $1'x' != 'x' ] 
-    then
-        ddjvu -format=tiff $1 "tmp.tiff"
-        tiff2pdf -j -o $1".pdf" "tmp.tiff"
-        rm tmp.tiff
-    else
-        echo "Please input pdf file"
-    fi
 }
 
 set_env
