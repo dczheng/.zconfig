@@ -28,15 +28,23 @@ debian_env() {
     alias cdz="/home/dczheng/Zdata"
     alias cdl="cd /home/dczheng/Work/lian"
     alias cdg="cd /home/dczheng/Work/gadget"
+    alias cdt="cd /home/dczheng/Work/gadget/gadget-tools"
     alias cda="cd /home/dczheng/Work/gadget/analysis"
 
     export PATH=$PATH:/home/dczheng/Work/gadget/scripts
 
-    export PATH=./:/home/dczheng/local/bin:$PATH
-    export LIBRARY_PATH=$LIBRARY_PATH:/home/dczheng/local/lib
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/dczheng/local/lib
-    export C_INCLUDE_PATH=$C_INCLUDE_PATH:/home/dczheng/local/include
+    export PATH=./:/home/dczheng/local/bin:$PATH:/home/dczheng/Zdata/software/paraview/bin
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/dczheng/local/pkgconfig
+
+    export LIBRARY_PATH=$LIBRARY_PATH:/home/dczheng/local/lib:/home/dczheng/Zdata/software/vtk-8.1.0/lib
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/dczheng/local/lib:/home/dczheng/Zdata/software/vtk-8.1.0/lib
+    export C_INCLUDE_PATH=$C_INCLUDE_PATH:/home/dczheng/local/include
+
+    export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/home/dczheng/Zdata/software/vtk-8.1.0/include/vtk-8.1/
+    export CMAKE_MODULE_PATH=$CMAKE_MODULE_PATH:/home/dczheng/Zdata/software/vtk-8.1.0/lib/cmake/vtk-8.1/Modules
+    export CMAKE_MODULE_PATH=$CMAKE_MODULE_PATH:/home/dczheng/Zdata/software/vtk-8.1.0/lib/cmake/vtk-8.1
+    export VTK_DIR=/home/dczheng/Zdata/software/vtk-8.1.0
+    export VTK_SOURCE_DIR=/home/dczheng/Zdata/packages/VTK-8.1.0
 
     export BXSHARE=/home/dczheng/Zdata/software/bochs-2.6.9/share/bochs
 
