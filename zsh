@@ -39,7 +39,6 @@ arch_env() {
 }
 
 debian_env() {
-    cowsay "Welcome to dczheng's Debian Linux"
     arch_debian_env()
     export TIME_STYLE='+%Y/%m/%d %H:%M:%S'
     alias cdw="cd /home/dczheng/Work"
