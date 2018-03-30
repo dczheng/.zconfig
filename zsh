@@ -206,7 +206,7 @@ djvu2pdf() {
     fi
 }
 
-job_monitor() {
+job_info() {
 
     if [ "x"$1 = "x" ]
     then
