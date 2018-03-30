@@ -2,7 +2,7 @@ cow_welcome() {
     echo
     echo "< $1 >"
     echo
-    cat ./cow.txt
+    cat /home/dczheng/.zconfig/cow.txt
 }
 
 arch_debian_env() {
@@ -229,7 +229,7 @@ job_monitor() {
     for i in `seq 1 $n`
     do
         clear
-        user_info.py
+        /home/dczheng/.zconfig/user_info.py
         if [ $n != 1 ]
         then
             sleep $t
