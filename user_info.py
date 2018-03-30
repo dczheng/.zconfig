@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 
 sl = 55
 log = os.popen( 'top -Hb -n1 -w 256' ).readlines()
@@ -50,8 +51,10 @@ log = os.popen( 'squeue -o %10i%10u%15j%12M%4t%4C' ).readlines()
 
 for l in log:
     print( l[:-1] )
-cow = open( '/home/dczheng/.zconfig/cow' ).readlines()
 print( "*" * sl )
-cl = 10
-for l in cow:
-    print( " " * cl + l[:-1] )
+
+user_info_path = os.path.realpath( sys.argv[0] )
+user_info_dir = os.path.dirname( user_info_path )
+cowsay_path = user_info_dir + '/' + 'cowsay.py'
+os.system( cowsay_path )
+

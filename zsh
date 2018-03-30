@@ -1,9 +1,4 @@
-cow_welcome() {
-    echo
-    echo "< $1 >"
-    echo
-    cat /home/dczheng/.zconfig/cow.txt
-}
+ZCONFIG="/home/dczheng/.zconfig"
 
 arch_debian_env() {
     alias vi="vim"
@@ -24,7 +19,7 @@ arch_debian_env() {
 }
 
 arch_env() {
-    cow_welcome "Welcome to dczheng's Arch Linux"
+    $ZCONFIG/cowsay.py "Welcome to dczheng's Arch Linux"
     arch_debian_env
     alias cdp="cd /home/dczheng/data/documents/physics"
     alias cdm="cd /home/dczheng/data/documents/math"
@@ -84,11 +79,11 @@ debian_env() {
     #xset m 20 1
     screenfetch
     #cowsay "Welcome to dczheng's Debian Linux"
-    cow_welcome "Welcome to dczheng's Debian Linux"
+    $ZCONFIG/cowsay.py "Welcome to dczheng's Debian Linux"
 }
 
 caa_env() {
-    cow_welcome "Welcome to CAA's Suse Linux"
+    $ZCONFIG/cowsay.py "Welcome to CAA's Suse Linux"
     alias cdw="cd /mnt/ddnfs/data_users/dczheng"
     alias cds="cd /mnt/ddnfs/data_users/dczheng/simulation"
     alias cdg="cd /mnt/ddnfs/data_users/dczheng/p-gadget3"
@@ -230,7 +225,7 @@ job_monitor() {
     for i in `seq 1 $n`
     do
         clear
-        /home/dczheng/.zconfig/user_info.py
+        $ZCONFIG/user_info.py
         if [ $n != 1 ]
         then
             sleep $t
@@ -268,3 +263,4 @@ set_env() {
 }
 
 set_env
+
