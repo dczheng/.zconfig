@@ -1,3 +1,10 @@
+cow_welcome() {
+    echo
+    echo "< $1 >"
+    echo
+    cat ./cow.txt
+}
+
 arch_debian_env() {
     alias vi="vim"
     alias sudo=" sudo "
@@ -17,7 +24,7 @@ arch_debian_env() {
 }
 
 arch_env() {
-    cowsay "Welcome to dczheng's Arch Linux"
+    cow_welcome "Welcome to dczheng's Arch Linux"
     arch_debian_env
     alias cdp="cd /home/dczheng/data/documents/physics"
     alias cdm="cd /home/dczheng/data/documents/math"
@@ -76,7 +83,29 @@ debian_env() {
     #export XPA_METHOD=local
     #xset m 20 1
     screenfetch
-    cowsay "Welcome to dczheng's Debian Linux"
+    #cowsay "Welcome to dczheng's Debian Linux"
+    cow_welcome "Welcome to dczheng's Debian Linux"
+}
+
+caa_env() {
+    cow_welcome "Welcome to CAA's Suse Linux"
+    alias cdw="cd /mnt/ddnfs/data_users/dczheng"
+    alias cds="cd /mnt/ddnfs/data_users/dczheng/simulation"
+    alias cdg="cd /mnt/ddnfs/data_users/dczheng/p-gadget3"
+    alias cdt="cd /mnt/ddnfs/data_users/dczheng/gadget-tools"
+    alias cdr="cd /mnt/ddnfs/data_users/dczheng/read_gadget_code"
+    alias w="w -h | sort"
+
+    export WORK="/mnt/ddnfs/data_users/dczheng/"
+
+    export PATH=/mnt/ddnfs/data_users/dczheng/local/bin:$PATH
+    export LD_LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LD_LIBRARY_PATH
+    export LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LIBRARY_PATH
+    export C_INCLUDE_PATH=/mnt/ddnfs/data_users/dczheng/local/include:$C_INCLUDE_PATH
+    export PKG_CONFIG_PATH=/mnt/ddnfs/data_users/dczheng/local/pkgconfig:$PKG_CONFIG_PATH
+    export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
+    source /usr/share/Modules/3.2.10/init/sh
+    module load openmpi-3.0.0 fftw-2.1.5 hdf5-1.8.19 gsl-2.4
 }
 
 cluster_env() {
@@ -181,6 +210,34 @@ djvu2pdf() {
     fi
 }
 
+job_monitor() {
+
+    if [ "x"$1 = "x" ]
+    then
+        n=1
+    else
+        n=$1
+    fi
+
+    if [ "x"$2 = "x" ]
+    then
+        t=5
+    else
+        t=$2
+    fi
+
+    for i in `seq 1 $n`
+    do
+        clear
+        user_info.py
+        if [ $n != 1 ]
+        then
+            sleep $t
+        fi
+    done
+
+}
+
 set_env() {
     clear
     echo "set environment ..."
@@ -194,11 +251,11 @@ set_env() {
         debian)
             debian_env
             ;;
-        dellr830.localdomain)
+        dellr830.localdomain|scnode*)
             cluster_env
             ;;
-        scnode*)
-            cluster_env
+        uv00000773-p000)
+            caa_env
             ;;
     esac
 }
