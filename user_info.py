@@ -42,17 +42,16 @@ job_info = "%10s : %4d"%( uu, n )
 print( job_info )
 all_job = "%10s : %4d"%( 'all', tot )
 print( all_job )
+
 print( '-'*sl )
 print( '^o^ slurm information ^o^' )
 print( '-'*sl )
 log = os.popen( 'squeue -o %10i%10u%15j%12M%4t%4C' ).readlines()
+
 for l in log:
     print( l[:-1] )
-cl = 25
-cow =  "*" * sl + '\n'
-cow += " " * cl + " \   ^__^             \n"
-cow += " " * cl + "  \  (oo)\_______     \n"
-cow += " " * cl + "     (__)\       )\/\ \n"
-cow += " " * cl + "         ||----w |    \n"
-cow += " " * cl + "         ||     ||    \n"
-print( cow )
+cow = open( '/home/dczheng/.zconfig/cow' ).readlines()
+print( "*" * sl )
+cl = 10
+for l in cow:
+    print( " " * cl + l[:-1] )
