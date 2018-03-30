@@ -103,8 +103,9 @@ caa_env() {
     export LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LIBRARY_PATH
     export C_INCLUDE_PATH=/mnt/ddnfs/data_users/dczheng/local/include:$C_INCLUDE_PATH
     export PKG_CONFIG_PATH=/mnt/ddnfs/data_users/dczheng/local/pkgconfig:$PKG_CONFIG_PATH
-    export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
+
     source /usr/share/Modules/3.2.10/init/sh
+    export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
     module load openmpi-3.0.0 fftw-2.1.5 hdf5-1.8.19 gsl-2.4
 }
 
@@ -236,6 +237,12 @@ job_monitor() {
         fi
     done
 
+}
+
+intel_env() {
+    echo "change intel environment ..."
+    module purge
+    module load intel-2016
 }
 
 set_env() {
