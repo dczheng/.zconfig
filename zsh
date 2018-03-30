@@ -49,7 +49,7 @@ debian_env() {
     alias cdl="cd /home/dczheng/Work/lian"
     alias cdg="cd /home/dczheng/Work/gadget"
     alias cdt="cd /home/dczheng/Work/gadget/gadget-tools"
-    alias cda="cd /home/dczheng/Work/gadget/analysis"
+    alias cds="cd /home/dczheng/Work/gadget/analysis"
 
     export PATH=$PATH:/home/dczheng/Work/gadget/scripts
 
