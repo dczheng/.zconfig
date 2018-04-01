@@ -10,15 +10,19 @@ print( '-'*sl )
 print( '^_^ job information ^_^' )
 print( '-'*sl )
 tot = 0
-job_info = "%10s   %4s  %s"%( "user", "num", "program" )
+tot_cpu = 0
+job_info = "%10s%-5s%-10s%-s"%( "user  ", "num", "tot_cpu", "program" )
 print( job_info )
 for u in users:
-    uu = u.split()[0]
+    uu = u[:-1]
     job = []
+    cpu = 0
     for l in log:
         ll = l.split()
         if uu == ll[1] and ll[7] == 'R' :
             job.append( ll[-1] )
+            cpu += float( ll[8] )
+    tot_cpu += cpu
     m = []
     if job != [] :
         n = len( job )
@@ -26,8 +30,9 @@ for u in users:
         for i in job:
             if not( i in m ):
                 m.append(i)
-        job_info = "%10s : %4d"%( uu, n )
-        job_info = job_info + "  |"
+                job_info = "%10s%-5d"%( uu + '  ' , n )
+        job_info += "%-10.1f"%( cpu )
+        job_info = job_info + "|"
         for i in m:
             job_info = job_info + "%s|"%(i)
         print( job_info )
@@ -39,9 +44,9 @@ for l in log:
         job.append( ll[-1] )
 n = len( job )
 tot += n
-job_info = "%10s : %4d"%( uu, n )
+job_info = "%10s%-5d"%( uu + '  ' , n )
 print( job_info )
-all_job = "%10s : %4d"%( 'all', tot )
+all_job = "%10s%-5d%-10.1f"%( 'all  ', tot, tot_cpu )
 print( all_job )
 
 print( '-'*sl )
