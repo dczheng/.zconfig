@@ -30,7 +30,7 @@ for u in users:
             x = float(ll[8]);
             if ( x < mcpu ):
                 mcpu = x
-                mpro = ll[-1]
+                mpro = ll[-1] + " "
             cpu += x
             x = ll[5]
             if ( x[-1] == 'g'):
