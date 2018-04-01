@@ -9,7 +9,6 @@ log = log[7:]
 print( '-'*sl )
 print( '^_^ job information ^_^' )
 print( '-'*sl )
-MEM = 4 * 1024  #Gb
 tot = 0
 tot_cpu = 0
 tot_mem = 0
@@ -25,7 +24,14 @@ for u in users:
         if uu == ll[1] and ll[7] == 'R' :
             job.append( ll[-1] )
             cpu += float( ll[8] )
-            mem += float( ll[9] ) / 100.0 * MEM
+            x = ll[5]
+            if ( x[-1] == 'g'):
+                x = float(x[:-1]) * 1024 * 1024
+            elif ( x[-1] == 'm' ):
+                x = float(x[:-1]) * 1024
+            else:
+                x = float( x )
+            mem += x / 1024 / 1024
     tot_cpu += cpu
     tot_mem += mem
     m = []
