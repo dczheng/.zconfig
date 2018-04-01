@@ -33,8 +33,9 @@ then
         /home/dczheng/.zconfig/powermanager.py &
     fi
     terminator &
-#elif [ $HOST = 'debian' ]
-#then
+elif [ $HOST = 'debian' ]
+then
+    terminator &
 else
     echo "Unsupported host"
 fi
