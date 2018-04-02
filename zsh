@@ -83,24 +83,29 @@ debian_env() {
 }
 
 caa_env() {
-    $ZCONFIG/cowsay.py "Welcome to CAA's Suse Linux"
-    alias cdw="cd /mnt/ddnfs/data_users/dczheng"
-    alias cds="cd /mnt/ddnfs/data_users/dczheng/simulation"
-    alias cdg="cd /mnt/ddnfs/data_users/dczheng/p-gadget3"
-    alias cdt="cd /mnt/ddnfs/data_users/dczheng/gadget-tools"
-    alias cdr="cd /mnt/ddnfs/data_users/dczheng/read_gadget_code"
-    alias w="w -h | sort"
-
-    export WORK="/mnt/ddnfs/data_users/dczheng/"
+    USER=`whoami`
+    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
 
     export PATH=/mnt/ddnfs/data_users/dczheng/local/bin:$PATH
     export LD_LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LD_LIBRARY_PATH
     export LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LIBRARY_PATH
     export C_INCLUDE_PATH=/mnt/ddnfs/data_users/dczheng/local/include:$C_INCLUDE_PATH
     export PKG_CONFIG_PATH=/mnt/ddnfs/data_users/dczheng/local/pkgconfig:$PKG_CONFIG_PATH
-
     source /usr/share/Modules/3.2.10/init/sh
     export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
+
+    if [ $USER != 'dczheng' ]
+    then
+        return
+    fi
+
+    alias cdw="cd /mnt/ddnfs/data_users/dczheng"
+    alias cds="cd /mnt/ddnfs/data_users/dczheng/simulation"
+    alias cdg="cd /mnt/ddnfs/data_users/dczheng/p-gadget3"
+    alias cdt="cd /mnt/ddnfs/data_users/dczheng/gadget-tools"
+    alias cdr="cd /mnt/ddnfs/data_users/dczheng/read_gadget_code"
+    alias w="w -h | sort"
+    export WORK="/mnt/ddnfs/data_users/dczheng/"
     module load openmpi-3.0.0 fftw-2.1.5 hdf5-1.8.19 gsl-2.4
 }
 
