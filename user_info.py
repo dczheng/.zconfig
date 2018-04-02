@@ -71,11 +71,14 @@ print( job_info )
 all_job = "%10s%-5d%-10.1f%-10.1f"%( 'all  ', tot, tot_cpu, tot_mem )
 print( all_job )
 
-print( '-'*sl )
-print( '^o^ slurm information ^o^' )
-print( '-'*sl )
 log = os.popen( 'squeue -o %10i%10u%15j%12M%4t%4C' ).readlines()
-
+tot_cpu = 0
+for i in range( 1, len(log) ):
+    t = log[i].split()
+    tot_cpu += int( t[-1] )
+print( '-'*sl )
+print( '^o^ slurm information ^o^     ** used: %i left: %i **'%(tot_cpu, 256-tot_cpu) )
+print( '-'*sl )
 for l in log:
     print( l[:-1] )
 print( "*" * sl )
