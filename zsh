@@ -106,6 +106,7 @@ caa_env() {
     alias cdr="cd /mnt/ddnfs/data_users/dczheng/read_gadget_code"
     alias w="w -h | sort"
     export WORK="/mnt/ddnfs/data_users/dczheng/"
+    module purge
     module load openmpi-3.0.0 fftw-2.1.5 hdf5-1.8.19 gsl-2.4
 }
 
