@@ -212,34 +212,6 @@ djvu2pdf() {
     fi
 }
 
-job_info() {
-
-    if [ "x"$1 = "x" ]
-    then
-        n=1
-    else
-        n=$1
-    fi
-
-    if [ "x"$2 = "x" ]
-    then
-        t=5
-    else
-        t=$2
-    fi
-
-    for i in `seq 1 $n`
-    do
-        clear
-        $ZCONFIG/user_info.py
-        if [ $n != 1 ]
-        then
-            sleep $t
-        fi
-    done
-
-}
-
 intel_env() {
     echo "change intel environment ..."
     module purge
