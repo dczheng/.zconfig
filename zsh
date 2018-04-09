@@ -86,7 +86,7 @@ caa_env() {
     USER=`whoami`
     $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
 
-    export PATH=/mnt/ddnfs/data_users/dczheng/local/bin:$PATH
+    export PATH=/mnt/ddnfs/data_users/dczheng/local/bin:$PATH:$ZCONFIG
     export LD_LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LD_LIBRARY_PATH
     export LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LIBRARY_PATH
     export C_INCLUDE_PATH=/mnt/ddnfs/data_users/dczheng/local/include:$C_INCLUDE_PATH
