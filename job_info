@@ -88,12 +88,6 @@ def job_info_slurm():
     print( '-'*sl )
     for l in log:
         print( l[:-1] )
-    print( "*" * sl )
-
-    user_info_path = os.path.realpath( sys.argv[0] )
-    user_info_dir = os.path.dirname( user_info_path )
-    cowsay_path = user_info_dir + '/' + 'cowsay.py'
-    os.system( cowsay_path )
 
 def main():
     N = 1
@@ -110,10 +104,17 @@ def main():
         t = args.t
     slurm_flag = not( args.ns )
 
+    user_info_path = os.path.realpath( sys.argv[0] )
+    user_info_dir = os.path.dirname( user_info_path )
+    cowsay_path = user_info_dir + '/' + 'cowsay.py'
+
     for i in range( N ):
+        os.system( 'clear' )
         job_info()
         if slurm_flag:
             job_info_slurm()
+        print( "*" * sl )
+        os.system( cowsay_path )
         if N != 1:
             time.sleep( t )
 
