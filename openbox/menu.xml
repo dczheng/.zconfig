@@ -22,15 +22,6 @@
     </action>
   </item>
 
-  <item label="Thunar">
-    <action name="Execute">
-      <command>thunar</command>
-      <startupnotify>
-        <enabled>yes</enabled>
-      </startupnotify>
-    </action>
-  </item>
-
   <item label="Thunderbird">
     <action name="Execute">
       <command>thunderbird</command>
