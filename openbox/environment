@@ -14,6 +14,7 @@ then
     export PATH=/home/dczheng/local/usr/mathematica_10.0/bin:$PATH
 elif [ $HOST = 'debian' ]
 then
+    export PATH=/home/dczheng/Zdata/software/mathematica-10.0.0/bin:$PATH
     xrandr --output VGA-2 --mode 1600x900 --pos 0x0 --rotate normal --output DVI-D-1 --primary --mode 1280x1024 --pos 1600x0 --rotate normal --output HDMI-1 --mode 1600x900 --pos 2880x0 --rotate normal
 else
     echo "Unupported host!"

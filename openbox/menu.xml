@@ -6,7 +6,7 @@
 
   <item label="Mathematica">
     <action name="Execute">
-      <command>Mathematica</command>
+      <command>mathematica</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
