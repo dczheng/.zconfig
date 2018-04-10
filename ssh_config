@@ -1,0 +1,17 @@
+Host caa
+    User dczheng
+    HostName caa
+
+Host astro
+    User dczheng
+    HostName astro
+    port 6600
+
+Host sao
+    User dczheng
+    HostName sao
+
+Host wang
+    User wang
+    HostName wang
+    port 8080

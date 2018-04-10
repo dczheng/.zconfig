@@ -12,10 +12,6 @@ arch_debian_env() {
     alias gedit="gedit &> /dev/null"
     alias reboot="sudo reboot"
     alias sd="sudo shutdown -h now"
-    alias ssh_caa="ssh dczheng@caa"
-    alias ssh_astro="ssh -p 6600 astro@astro"
-    alias ssh_wang="ssh -p 8080 wang@wang"
-    alias ssh_s1="ssh dczheng@sao"
 }
 
 arch_env() {
