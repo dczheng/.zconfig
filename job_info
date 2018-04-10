@@ -62,6 +62,8 @@ def job_info(sl):
             for i in m:
                 job_info = job_info + "%s|"%(i)
             print( job_info )
+    print( '-'*sl )
+
     uu = 'root'
     job = []
     for l in log:
@@ -70,10 +72,10 @@ def job_info(sl):
             job.append( ll[-1] )
     n = len( job )
     tot += n
-    job_info = "%10s%-5d"%( uu + '  ' , n )
-    print( job_info )
-    all_job = "%10s%-5d%-10.1f%-10.1f"%( 'all  ', tot, tot_cpu, tot_mem )
-    print( all_job )
+    other_info = "root: %d | "%( n )
+
+    other_info += "cpu: used %d left %d |  mem: used %d left %d"%( tot, 256-tot, tot_mem, 4096-tot_mem )
+    print( other_info )
 
 def job_info_slurm(sl):
     print( '-'*sl )
