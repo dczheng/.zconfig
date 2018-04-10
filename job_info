@@ -92,7 +92,7 @@ def job_info_slurm(sl):
 def main():
     N = 1
     t = 5
-    sl = 60
+    sl = 65
     parser = argparse.ArgumentParser()
     parser.add_argument( "-n", type=int, help="run times" )
     parser.add_argument( "-t", type=int, help="sleep time" )
