@@ -74,7 +74,7 @@ def job_info(sl):
     tot += n
     other_info = "root: %d | "%( n )
 
-    other_info += "cpu: used %d left %d |  mem(Gb): used %d left %d"%( tot, 256-tot, tot_mem, 4096-tot_mem )
+    other_info += "cpu: used %d left %d | mem(Gb): used %d left %d"%( tot, 256-tot, tot_mem, 4096-tot_mem )
     print( other_info )
 
 def job_info_slurm(sl):
