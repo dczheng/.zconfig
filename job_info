@@ -14,7 +14,7 @@ def job_info(sl):
     tot = 0
     tot_cpu = 0
     tot_mem = 0
-    job_info = "%10s%-5s%-10s%-8s%-6s%-10s%-s"%( "user  ", "num", "cpu", \
+    job_info = "%10s%-5s%-10s%-8s%-10s%-15s%-s"%( "user  ", "num", "cpu", \
                                              "mem(Gb)", "mcpu", "mpro", "program" )
     print( job_info )
     for u in users:
@@ -57,7 +57,7 @@ def job_info(sl):
             job_info += "%-10.1f"%( cpu )
             job_info += "%-8.1f"%( mem )
             job_info += "%-6.1f"%( mcpu )
-            job_info += "%-10s"%( mpro )
+            job_info += "%-15s"%( mpro )
             job_info = job_info + "|"
             for i in m:
                 job_info = job_info + "%s|"%(i)
@@ -92,7 +92,7 @@ def job_info_slurm(sl):
 def main():
     N = 1
     t = 5
-    sl = 65
+    sl = 70
     parser = argparse.ArgumentParser()
     parser.add_argument( "-n", type=int, help="run times" )
     parser.add_argument( "-t", type=int, help="sleep time" )
