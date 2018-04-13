@@ -80,7 +80,6 @@ debian_env() {
 
 caa_env() {
     USER=`whoami`
-    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
 
     export PATH=/mnt/ddnfs/data_users/dczheng/local/bin:$PATH:$ZCONFIG
     export LD_LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LD_LIBRARY_PATH
@@ -89,7 +88,8 @@ caa_env() {
     export PKG_CONFIG_PATH=/mnt/ddnfs/data_users/dczheng/local/pkgconfig:$PKG_CONFIG_PATH
     source /usr/share/Modules/3.2.10/init/sh
     export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
-    job_info -ns
+    job_info -ns -ncow -ncls
+    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
 
     if [ $USER != 'dczheng' ]
     then

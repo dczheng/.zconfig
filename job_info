@@ -98,6 +98,8 @@ def main():
     parser.add_argument( "-t", type=int, help="sleep time" )
     parser.add_argument( "-sl", type=int, help="split line length" )
     parser.add_argument( "-ns", help="close slurm info", action="store_true" )
+    parser.add_argument( "-ncow", help="close cowsay", action="store_true" )
+    parser.add_argument( "-ncls", help="close cls", action="store_true" )
     args = parser.parse_args()
 
     if args.n:
@@ -113,12 +115,14 @@ def main():
     cowsay_path = user_info_dir + '/' + 'cowsay.py'
 
     for i in range( N ):
-        os.system( 'clear' )
+        if not(args.ncls):
+            os.system( 'clear' )
         job_info(sl)
         if slurm_flag:
             job_info_slurm(sl)
         print( "*" * sl )
-        os.system( cowsay_path )
+        if not(args.ncow):
+            os.system( cowsay_path )
         if N != 1:
             time.sleep( t )
 
