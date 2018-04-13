@@ -88,7 +88,9 @@ caa_env() {
     export PKG_CONFIG_PATH=/mnt/ddnfs/data_users/dczheng/local/pkgconfig:$PKG_CONFIG_PATH
     source /usr/share/Modules/3.2.10/init/sh
     export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
+    echo
     job_info -ns -ncow -ncls
+    echo
     $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
 
     if [ $USER != 'dczheng' ]
