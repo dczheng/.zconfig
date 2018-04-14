@@ -111,7 +111,7 @@ caa_env() {
 }
 
 cluster_env() {
-    export PATH=/home/dczheng/local/bin:$PATH
+    export PATH=/home/dczheng/local/bin:$PATH:$ZCONFIG
     export LD_LIBRARY_PATH=/home/dczheng/local/lib:$LD_LIBRARY_PATH
     export LIBRARY_PATH=/home/dczheng/local/lib:$LIBRARY_PATH
     export C_INCLUDE_PATH=/home/dczheng/local/include:$C_INCLUDE_PATH
