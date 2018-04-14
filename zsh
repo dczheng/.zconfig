@@ -89,7 +89,7 @@ caa_env() {
     source /usr/share/Modules/3.2.10/init/sh
     export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
     echo
-    job_info -ns -ncow -ncls
+    $ZCONFIG/job_info -ns -ncow -ncls
     echo
     $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
 
@@ -119,6 +119,10 @@ cluster_env() {
     export PKG_CONFIG_PATH=/home/dczhen/local/pkgconfig:$$PKG_CONFIG_PATH
     alias cds=/home/dczheng/simulation
     alias cdt=/home/dczheng/gadget-tools
+    echo
+    $ZCONFIG/job_info -ns -ncow -ncls
+    echo
+    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
 }
 
 start_shadowsocks_arch() {
