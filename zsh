@@ -125,7 +125,7 @@ cluster_env() {
     echo
     $ZCONFIG/job_info -ns -ncow -ncls
     echo
-    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CenOS (*.*)"
+    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CentOS (*.*)"
 }
 
 start_shadowsocks_arch() {
