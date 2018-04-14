@@ -104,6 +104,7 @@ caa_env() {
     alias cdt="cd /mnt/ddnfs/data_users/dczheng/gadget-tools"
     alias cdr="cd /mnt/ddnfs/data_users/dczheng/read_gadget_code"
     alias w="w -h | sort"
+    alias df="df -lh"
     export WORK="/mnt/ddnfs/data_users/dczheng/"
     module purge
     #module load openmpi-3.0.0 fftw-2.1.5 hdf5-1.8.19 gsl-2.4
@@ -119,10 +120,13 @@ cluster_env() {
     export PKG_CONFIG_PATH=/home/dczhen/local/pkgconfig:$$PKG_CONFIG_PATH
     alias cds=/home/dczheng/simulation
     alias cdt=/home/dczheng/gadget-tools
+    alias df="df -lh"
     export MODULEPATH=/home/dczheng/local/modules:$MODULEPATH
-    module load mpich/mpich-3.2.1
-    module load mpich/fftw-2.1.5
-    module load intel/2016
+    #module load mpich/mpich-3.2.1
+    #module load mpich/fftw-2.1.5
+    module load openmpi/openmpi-3.0.1
+    module load openmpi/fftw-2.1.5
+    #module load intel/2016
     echo
     $ZCONFIG/job_info -ns -ncow -ncls
     echo
@@ -239,9 +243,9 @@ set_env() {
         debian)
             debian_env
             ;;
-        master)
-            ssh node1
-            ;;
+      #  master)
+      #      ssh node1
+      #      ;;
         scnode*)
             cluster_env
             ;;
