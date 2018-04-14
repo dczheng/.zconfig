@@ -235,7 +235,10 @@ set_env() {
         debian)
             debian_env
             ;;
-        dellr830.localdomain|scnode*)
+        master)
+            ssh node1
+            ;;
+        scnode*)
             cluster_env
             ;;
         uv00000773-p000)
