@@ -13,7 +13,7 @@ def job_info(sl):
     print( '-'*sl )
     used_cpu = 0
     used_mem = 0
-    job_info = "%10s%-5s%-10s%-8s%-10s%-15s%-s"%( "user  ", "num", "cpu", \
+    job_info = "%10s%-5s%-10s%-8s%-6s%-15s%-s"%( "user  ", "num", "cpu", \
                                              "mem(Gb)", "mcpu", "mpro", "program" )
     print( job_info )
     for u in users:

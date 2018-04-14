@@ -122,6 +122,7 @@ cluster_env() {
     export MODULEPATH=/home/dczheng/local/modules:$MODULEPATH
     module load mpich/mpich-3.2.1
     module load mpich/fftw-2.1.5
+    module load intel/2016
     echo
     $ZCONFIG/job_info -ns -ncow -ncls
     echo
