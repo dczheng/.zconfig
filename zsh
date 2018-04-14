@@ -119,10 +119,13 @@ cluster_env() {
     export PKG_CONFIG_PATH=/home/dczhen/local/pkgconfig:$$PKG_CONFIG_PATH
     alias cds=/home/dczheng/simulation
     alias cdt=/home/dczheng/gadget-tools
+    export MODULEPATH=/home/dczheng/local/modules:$MODULEPATH
+    module load mpich/mpich-3.2.1
+    module load mpich/fftw-2.1.5
     echo
     $ZCONFIG/job_info -ns -ncow -ncls
     echo
-    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
+    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CenOS (*.*)"
 }
 
 start_shadowsocks_arch() {
