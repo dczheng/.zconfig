@@ -78,61 +78,6 @@ debian_env() {
     $ZCONFIG/cowsay.py "Welcome to dczheng's Debian Linux"
 }
 
-caa_env() {
-    USER=`whoami`
-
-    export PATH=/mnt/ddnfs/data_users/dczheng/local/bin:$PATH:$ZCONFIG
-    export LD_LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LD_LIBRARY_PATH
-    export LIBRARY_PATH=/mnt/ddnfs/data_users/dczheng/local/lib:$LIBRARY_PATH
-    export C_INCLUDE_PATH=/mnt/ddnfs/data_users/dczheng/local/include:$C_INCLUDE_PATH
-    export PKG_CONFIG_PATH=/mnt/ddnfs/data_users/dczheng/local/pkgconfig:$PKG_CONFIG_PATH
-    source /usr/share/Modules/3.2.10/init/sh
-    export MODULEPATH=/mnt/ddnfs/data_users/dczheng/local/modules:$MODULEPATH
-    echo
-    $ZCONFIG/job_info -ns -ncow -ncls
-    echo
-    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CAA's Suse Linux (*.*)"
-
-    if [ $USER != 'dczheng' ]
-    then
-        return
-    fi
-
-    alias cdw="cd /mnt/ddnfs/data_users/dczheng"
-    alias cds="cd /mnt/ddnfs/data_users/dczheng/simulation"
-    alias cdg="cd /mnt/ddnfs/data_users/dczheng/p-gadget3"
-    alias cdt="cd /mnt/ddnfs/data_users/dczheng/gadget-tools"
-    alias cdr="cd /mnt/ddnfs/data_users/dczheng/read_gadget_code"
-    alias w="w -h | sort"
-    alias df="df -lh"
-    export WORK="/mnt/ddnfs/data_users/dczheng/"
-    module purge
-    #module load openmpi-3.0.0 fftw-2.1.5 hdf5-1.8.19 gsl-2.4
-    module load mpich-3.2.1 fftw-2.1.5_mpich hdf5-1.8.19 gsl-2.4
-}
-
-cluster_env() {
-    export PATH=/home/dczheng/local/bin:$PATH:$ZCONFIG
-    export LD_LIBRARY_PATH=/home/dczheng/local/lib:$LD_LIBRARY_PATH
-    export LIBRARY_PATH=/home/dczheng/local/lib:$LIBRARY_PATH
-    export C_INCLUDE_PATH=/home/dczheng/local/include:$C_INCLUDE_PATH
-    export MANPATH=/home/dczheng/local/man:$MANPATH
-    export PKG_CONFIG_PATH=/home/dczhen/local/pkgconfig:$$PKG_CONFIG_PATH
-    alias cds=/home/dczheng/simulation
-    alias cdt=/home/dczheng/gadget-tools
-    alias df="df -lh"
-    export MODULEPATH=/home/dczheng/local/modules:$MODULEPATH
-    #module load mpich/mpich-3.2.1
-    #module load mpich/fftw-2.1.5
-    module load openmpi/openmpi-3.0.1
-    module load openmpi/fftw-2.1.5
-    #module load intel/2016
-    echo
-    $ZCONFIG/job_info -ns -ncow -ncls
-    echo
-    $ZCONFIG/cowsay.py " $USER  (*.*) Welcome to CentOS (*.*)"
-}
-
 start_shadowsocks_arch() {
     ipaddr=`ip addr | grep inet | grep wlp3s0 | awk '{print $2}' | awk -F '/' '{print $1}'`
     echo "update arch-wlan ($ipaddr) in /etc/hosts ..."
@@ -224,12 +169,6 @@ djvu2pdf() {
     fi
 }
 
-intel_env() {
-    echo "change intel environment ..."
-    module purge
-    module load intel-2016
-}
-
 set_env() {
     clear
     echo "set environment ..."
@@ -242,15 +181,6 @@ set_env() {
             ;;
         debian)
             debian_env
-            ;;
-      #  master)
-      #      ssh node1
-      #      ;;
-        scnode*)
-            cluster_env
-            ;;
-        uv00000773-p000)
-            caa_env
             ;;
     esac
 }
