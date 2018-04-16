@@ -153,21 +153,6 @@ battary_info() {
     upower -i $(upower -e | grep 'BAT') | grep -E "state|percentage"
 }
 
-scp_caa() {
-    echo "send $1 to caa ..."
-    scp $1 dczheng@caa:~
-}
-
-scp_astro() {
-    echo "send $1 to astro ..."
-    scp -P 6600 $1 astro@astro:~
-}
-
-scp_s1() {
-    echo "send $1 to sao1 ..."
-    scp $1 dczheng@sao:~
-}
-
 djvu2pdf() {
     if [ $1'x' != 'x' ] 
     then
