@@ -80,17 +80,27 @@ debian_env() {
 
 start_shadowsocks_arch() {
     ipaddr=`ip addr | grep inet | grep wlp3s0 | awk '{print $2}' | awk -F '/' '{print $1}'`
+    if [ 'x'$ipaddr == 'x' ]
+    then
+        echo -e "\033[31mSTART SHADOWSOCKS FILED: network doesn't work!\033[0m"
+        return
+    fi
     echo "update arch-wlan ($ipaddr) in /etc/hosts ..."
     sudo sed -i 's/.*arch-wlan/'"$ipaddr"' arch-wlan/' /etc/hosts
-    echo "start shadowsocks on archlinux... "
+    echo "start shadowsocks on archlinux ... "
     sudo systemctl start shadowsocks-libev@dczheng.service
 }
 
 start_shadowsocks_debian() {
     ipaddr=`ip addr | grep inet | grep wlan0 | awk '{print $2}' | awk -F '/' '{print $1}'`
+    if [ 'x'$ipaddr = 'x' ]
+    then
+        echo -e "\033[31mSTART SHADOWSOCKS FILED: network doesn't work!\033[0m"
+        return
+    fi
     echo "update debian-wlan ($ipaddr) in /etc/hosts ..."
     sudo sed -i 's/.*debian-wlan/'"$ipaddr"' debian-wlan/' /etc/hosts
-    echo "start shadowsocks on debian... "
+    echo "start shadowsocks on debian ... "
     sudo systemctl start shadowsocks-libev-local@dczheng.service
 }
 
@@ -183,6 +193,7 @@ set_env() {
             debian_env
             ;;
     esac
+    start_shadowsocks
 }
 
 set_env
