@@ -80,7 +80,7 @@ debian_env() {
 
 start_shadowsocks_arch() {
     ipaddr=`ip addr | grep inet | grep wlp3s0 | awk '{print $2}' | awk -F '/' '{print $1}'`
-    if [ 'x'$ipaddr == 'x' ]
+    if [ 'x'$ipaddr = 'x' ]
     then
         echo -e "\033[31mSTART SHADOWSOCKS FILED: network doesn't work!\033[0m"
         return
@@ -105,6 +105,11 @@ start_shadowsocks_debian() {
 }
 
 start_shadowsocks() {
+    flag=`ps aux | grep shadowsocks | wc -l`
+    if [ $flag != '1' ]
+    then
+        return
+    fi
     HOST=`hostname`
     if [ $HOST = 'archlinux' ]
     then
