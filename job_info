@@ -55,7 +55,7 @@ def job_info(sl):
             job_info += "%-10.1f"%( cpu )
             job_info += "%-8.1f"%( mem )
             job_info += "%-6.1f"%( mcpu )
-            job_info += "%-15s"%( mpro )
+            job_info += "%-15s"%( mpro[0:15] )
             job_info = job_info + "|"
             for i in m:
                 job_info = job_info + "%s|"%(i)
