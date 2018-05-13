@@ -3,7 +3,7 @@ Host caa
     HostName caa
 
 Host astro
-    User dczheng
+    User astro
     HostName astro
     port 6600
 
