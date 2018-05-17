@@ -4,6 +4,7 @@ arch_debian_env() {
     alias vi="vim"
     alias sudo=" sudo "
     alias pdf="evince &> /dev/null"
+    alias mendeley="mendeleydesktop &> /dev/null"
     alias df="df -lh"
     alias cdw="cd /home/dczheng/work"
     alias cdd="cd /home/dczheng/Downloads"

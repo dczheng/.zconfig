@@ -35,7 +35,7 @@ then
     terminator &
 elif [ $HOST = 'debian' ]
 then
-    xscreensaver -nosplash &
+   # xscreensaver -nosplash &
     terminator
 else
     echo "Unsupported host"
