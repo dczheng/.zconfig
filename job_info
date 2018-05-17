@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+import os
+import sys
+import argparse
+import time
+
+def job_info(sl):
+
+    print( '-'*sl )
+    print( '^_^ job information ^_^' )
+    print( '-'*sl )
+
+    job_info = os.popen( 'ps aHux' )
+    users = os.popen( 'ls /home' ).readlines()
+    #print( users )
+
+    R_jobs = []
+    R_users = []
+
+    for i in job_info:
+        t = i.split()
+        if t[10] == 'ps':
+            continue
+        if ( t[7][0] == 'R' ):
+            R_jobs.append( t )
+            if ( ( (t[0]+'\n') in users ) and (not( t[0] in R_users ) ) ):
+                R_users.append( t[0] )
+
+    info_fmt1 = "%10s %-5s %-10s %-8s %-8s %-6s %-10s %-s\n"
+    info_fmt2 = "%10s %-5i %-10.2f %-8.2f %-8.2f %-6.2f %-10s %-s\n"
+    info_buf = info_fmt1%( "user", "cores", "cpu(%)", "vsz(Gb)", "rss(Gb)", "mcpu", "mpro", "program" )
+    used_cpu = 0
+    used_mem = 0
+
+    #print( R_jobs )
+    #print( R_users )
+
+    for u in R_users:
+        vsz = 0
+        rss = 0
+        cpu = 0
+        mcpu = 150
+        ncores = 0
+        pid = []
+        pro = []
+        for j in R_jobs:
+
+            if ( j[0] != u ):
+                continue
+
+            #print( j )
+
+            ncores += 1
+            c = float( j[2] )
+            cpu += c
+
+            pro_name = j[10].split( '/' )
+            pro_name = pro_name[-1][ 0:10 ]
+
+            if ( c < mcpu ):
+                mcpu = c
+                mpro = pro_name
+
+            if ( not( pro_name in pro ) ):
+                pro.append( pro_name )
+
+            if ( not( j[1] in pid ) ):
+                pid.append( j[1] )
+                vsz += float( j[4] )
+                rss += float( j[5] )
+
+
+        vsz /= ( 1024.0 * 1024.0 )
+        rss /= ( 1024.0 * 1024.0 )
+
+        used_cpu += ncores
+        used_mem += rss
+
+        l = '|'
+        for i in pro:
+            l += ( i + '|' )
+
+        #print( u, ncores, mcpu, mpro, cpu, vsz, rss, l )
+
+        tt = info_fmt2%( u, ncores, cpu, vsz, rss, mcpu, mpro, l)
+
+        info_buf += tt
+
+    print( info_buf[:-1] )
+    print( '-'*sl )
+
+    #print( used_cpu, used_mem )
+
+    other_info = ''
+    log = os.popen( 'free' ).readlines()
+    for l in log:
+        if "Mem:" in l:
+            t = l.split()
+            tot_mem = int( t[1] ) / 1024 / 1024
+            #used_mem = int( t[2] ) / 1024 / 1024
+            #free_mem = int( t[3] ) / 1024 / 1024
+            cached_mem = int( t[6] ) / 1024 / 1024
+    ncpu = os.popen( 'cat /proc/cpuinfo | grep "physical id" | uniq | wc -l ' ).readlines()
+    ncpu = int( ncpu[0] )
+    nc = os.popen( 'cat /proc/cpuinfo | grep "cpu core"' ).readlines()
+    nc = nc[0].split()
+    nc = int(nc[3])
+    #print( ncpu, nc )
+    tot_cpu = ncpu * nc
+    other_info += "cpu: tot %d | used %d | left %d\n"  %( tot_cpu, used_cpu, tot_cpu-used_cpu )
+    other_info += "mem(Gb): tot %.1f | used %.1f | left %.1f | cached %.1f" \
+        %(tot_mem, used_mem, tot_mem-used_mem, cached_mem )
+    print( other_info )
+
+
+def job_info_slurm(sl):
+    print( '-'*sl )
+    log = os.popen( 'squeue -o %10i%10u%15j%14M%4t%4C' ).readlines()
+    tot_cpu = 0
+    for i in range( 1, len(log) ):
+        t = log[i].split()
+        tot_cpu += int( t[-1] )
+    print( '^o^ slurm information ^o^     ** used: %i left: %i **'%(tot_cpu, 256-tot_cpu) )
+    print( '-'*sl )
+    for l in log:
+        print( l[:-1] )
+
+
+def main():
+    N = 1
+    t = 5
+    sl = 70
+    parser = argparse.ArgumentParser()
+    parser.add_argument( "-n", type=int, help="run times" )
+    parser.add_argument( "-t", type=int, help="sleep time" )
+    parser.add_argument( "-sl", type=int, help="split line length" )
+    parser.add_argument( "-ns", help="close slurm info", action="store_true" )
+    parser.add_argument( "-ncow", help="close cowsay", action="store_true" )
+    parser.add_argument( "-ncls", help="close cls", action="store_true" )
+    args = parser.parse_args()
+
+    if args.n:
+        N = args.n
+    if args.t:
+        t = args.t
+    if args.sl:
+        sl = args.sl
+    slurm_flag = not( args.ns )
+
+    user_info_path = os.path.realpath( sys.argv[0] )
+    user_info_dir = os.path.dirname( user_info_path )
+    cowsay_path = user_info_dir + '/' + 'cowsay.py'
+
+    for i in range( N ):
+        if not(args.ncls):
+            os.system( 'clear' )
+        job_info(sl)
+        if slurm_flag:
+            job_info_slurm(sl)
+        print( "*" * sl )
+        if not(args.ncow):
+            os.system( cowsay_path )
+        if N != 1:
+            time.sleep( t )
+
+if __name__ == '__main__':
+    main()
+
