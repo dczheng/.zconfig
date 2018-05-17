@@ -19,7 +19,7 @@ def job_info(sl):
 
     for i in job_info:
         t = i.split()
-        if t[10] == 'ps':
+        if t[10] == 'ps' or 'top' in t[10]:
             continue
         if ( t[7][0] == 'R' ):
             R_jobs.append( t )
