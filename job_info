@@ -5,76 +5,93 @@ import argparse
 import time
 
 def job_info(sl):
-    log = os.popen( 'top -Hb -n1 -w 256' ).readlines()
-    users = os.popen( 'ls /home' ).readlines()
-    log = log[7:]
+
     print( '-'*sl )
     print( '^_^ job information ^_^' )
     print( '-'*sl )
+
+    job_info = os.popen( 'ps aHux' )
+    users = os.popen( 'ls /home' ).readlines()
+    #print( users )
+
+    R_jobs = []
+    R_users = []
+
+    for i in job_info:
+        t = i.split()
+        if t[10] == 'ps':
+            continue
+        if ( t[7][0] == 'R' ):
+            R_jobs.append( t )
+            if ( ( (t[0]+'\n') in users ) and (not( t[0] in R_users ) ) ):
+                R_users.append( t[0] )
+
+    info_fmt1 = "%10s %-5s %-10s %-8s %-8s %-6s %-10s %-s\n"
+    info_fmt2 = "%10s %-5i %-10.2f %-8.2f %-8.2f %-6.2f %-10s %-s\n"
+    info_buf = info_fmt1%( "user", "cores", "cpu(%)", "vsz(Gb)", "rss(Gb)", "mcpu", "mpro", "program" )
     used_cpu = 0
     used_mem = 0
-    job_info = "%10s%-5s%-10s%-8s%-6s%-15s%-s"%( "user  ", "num", "cpu", \
-                                             "mem(Gb)", "mcpu", "mpro", "program" )
-    print( job_info )
-    for u in users:
-        uu = u[:-1]
-        job = []
+
+    #print( R_jobs )
+    #print( R_users )
+
+    for u in R_users:
+        vsz = 0
+        rss = 0
         cpu = 0
         mcpu = 150
-        mem = 0
-        for l in log:
-            ll = l.split()
-            if 'top' in ll[-1]:
+        ncores = 0
+        pid = []
+        pro = []
+        for j in R_jobs:
+
+            if ( j[0] != u ):
                 continue
-            if uu == ll[1] and ll[7] == 'R' :
-                job.append( ll[-1] )
-                x = float(ll[8]);
-                if ( x < mcpu ):
-                    mcpu = x
-                    mpro = ll[-1] + " "
-                cpu += x
-                x = ll[5]
-                if ( x[-1] == 't'):
-                    x = float(x[:-1]) * 1024 * 1024 * 1024
-                elif ( x[-1] == 'g'):
-                    x = float(x[:-1]) * 1024 * 1024
-                elif ( x[-1] == 'm' ):
-                    x = float(x[:-1]) * 1024
-                else:
-                    x = float( x )
-                mem += x / 1024 / 1024
-        used_mem += mem
-        m = []
-        if job != [] :
-            n = len( job )
-            used_cpu += n
-            for i in job:
-                if not( i in m ):
-                    m.append(i)
-                    job_info = "%10s%-5d"%( uu + '  ' , n )
-            job_info += "%-10.1f"%( cpu )
-            job_info += "%-8.1f"%( mem )
-            job_info += "%-6.1f"%( mcpu )
-            job_info += "%-15s"%( mpro[0:15] )
-            job_info = job_info + "|"
-            for i in m:
-                job_info = job_info + "%s|"%(i)
-            print( job_info )
+
+            #print( j )
+
+            ncores += 1
+            c = float( j[2] )
+            cpu += c
+
+            pro_name = j[10].split( '/' )
+            pro_name = pro_name[-1][ 0:10 ]
+
+            if ( c < mcpu ):
+                mcpu = c
+                mpro = pro_name
+
+            if ( not( pro_name in pro ) ):
+                pro.append( pro_name )
+
+            if ( not( j[1] in pid ) ):
+                pid.append( j[1] )
+                vsz += float( j[4] )
+                rss += float( j[5] )
+
+
+        vsz /= ( 1024.0 * 1024.0 )
+        rss /= ( 1024.0 * 1024.0 )
+
+        used_cpu += ncores
+        used_mem += rss
+
+        l = '|'
+        for i in pro:
+            l += ( i + '|' )
+
+        #print( u, ncores, mcpu, mpro, cpu, vsz, rss, l )
+
+        tt = info_fmt2%( u, ncores, cpu, vsz, rss, mcpu, mpro, l)
+
+        info_buf += tt
+
+    print( info_buf[:-1] )
     print( '-'*sl )
 
-    other_info = ''
-    '''
-    uu = 'root'
-    job = []
-    for l in log:
-        ll = l.split()
-        if uu == ll[1] and ll[7] == 'R':
-            job.append( ll[-1] )
-    n = len( job )
-    used_cpu += n
-    other_info += "root: %d\n"%( n )
-    '''
+    #print( used_cpu, used_mem )
 
+    other_info = ''
     log = os.popen( 'free' ).readlines()
     for l in log:
         if "Mem:" in l:
@@ -107,6 +124,7 @@ def job_info_slurm(sl):
     print( '-'*sl )
     for l in log:
         print( l[:-1] )
+
 
 def main():
     N = 1
