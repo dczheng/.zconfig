@@ -179,7 +179,7 @@ def main():
         if not(args.ncls):
             os.system( 'clear' )
         job_info(sl)
-        break
+        #break
         if slurm_flag:
             job_info_slurm(sl)
         print( "*" * sl )
