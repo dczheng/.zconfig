@@ -26,8 +26,8 @@ def job_info(sl):
             if ( ( (t[0]+'\n') in users ) and (not( t[0] in R_users ) ) ):
                 R_users.append( t[0] )
 
-    info_fmt1 = "%10s %5s %10s %8s %8s %6s %10s %s\n"
-    info_fmt2 = "%10s %5i %10.2f %8.2f %8.2f %6.2f %10s %-s\n"
+    info_fmt1 = "%10s %5s %8s %8s %8s %6s %10s %s\n"
+    info_fmt2 = "%10s %5i %8.2f %8.2f %8.2f %6.2f %10s %-s\n"
     info_buf = info_fmt1%( "user", "cores", "cpu(%)", "vsz(Gb)", "rss(Gb)", "mcpu", "mpro", "programs" )
     used_cpu = 0
     used_mem = 0
