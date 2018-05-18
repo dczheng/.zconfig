@@ -28,7 +28,7 @@ def job_info(sl):
 
     info_fmt1 = "%10s %5s %10s %8s %8s %6s %10s %s\n"
     info_fmt2 = "%10s %5i %10.2f %8.2f %8.2f %6.2f %10s %-s\n"
-    info_buf = info_fmt1%( "user", "cores", "cpu(%)", "vsz(Gb)", "rss(Gb)", "mcpu", "mpro", "program" )
+    info_buf = info_fmt1%( "user", "cores", "cpu(%)", "vsz(Gb)", "rss(Gb)", "mcpu", "mpro", "programs" )
     used_cpu = 0
     used_mem = 0
 
@@ -42,7 +42,8 @@ def job_info(sl):
         mcpu = 150
         ncores = 0
         pid = []
-        pro = []
+        pro_n = []
+        pro_t = []
         for j in R_jobs:
 
             if ( j[0] != u ):
@@ -56,13 +57,28 @@ def job_info(sl):
 
             pro_name = j[10].split( '/' )
             pro_name = pro_name[-1][ 0:10 ]
+            pro_time = int(j[9].split( ':' )[0])
+
+            #print( pro_time )
 
             if ( c < mcpu ):
                 mcpu = c
                 mpro = pro_name
 
-            if ( not( pro_name in pro ) ):
-                pro.append( pro_name )
+            if ( not( pro_name in pro_n ) ):
+                pro_n.append( pro_name )
+                pro_t.append( pro_time )
+            else:
+                dt = 100000
+                for tt in pro_t:
+                    ldt = abs( tt - pro_time )
+                    if ldt < dt:
+                        dt = ldt
+                if ( dt > 60 ):
+                    pro_n.append( pro_name )
+                    pro_t.append( pro_time )
+
+
 
             if ( not( j[1] in pid ) ):
                 pid.append( j[1] )
@@ -77,8 +93,16 @@ def job_info(sl):
         used_mem += rss
 
         l = '|'
-        for i in pro:
-            l += ( i + '|' )
+        for i in range( len( pro_n ) ):
+            l += pro_n[i]
+            t = pro_t[i]
+            h = t // 60
+            m = t % 60
+            if ( h == 0 ):
+                l += "/%im"%( m )
+            else:
+                l += "/%ih%im"%( h, m )
+            l += '|'
 
         #print( u, ncores, mcpu, mpro, cpu, vsz, rss, l )
 
@@ -155,6 +179,7 @@ def main():
         if not(args.ncls):
             os.system( 'clear' )
         job_info(sl)
+        break
         if slurm_flag:
             job_info_slurm(sl)
         print( "*" * sl )
