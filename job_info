@@ -21,13 +21,7 @@ def job_info(sl):
     for i in job_info:
         t = i.split()
 
-        flag = 0
-        for j in Remove_pro:
-            if t[10] == j:
-                flag = 1
-                break
-
-        if ( flag ):
+        if t[10] in Remove_pro:
             continue
 
         if ( t[7][0] == 'R' ):
