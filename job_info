@@ -16,11 +16,20 @@ def job_info(sl):
 
     R_jobs = []
     R_users = []
+    Remove_pro = [ 'ps', 'top', 'tmux', 'grep' ]
 
     for i in job_info:
         t = i.split()
-        if t[10] == 'ps' or 'top' in t[10]:
+
+        flag = 0
+        for j in Remove_pro:
+            if t[10] == j:
+                flag = 1
+                break
+
+        if ( flag ):
             continue
+
         if ( t[7][0] == 'R' ):
             R_jobs.append( t )
             if ( ( (t[0]+'\n') in users ) and (not( t[0] in R_users ) ) ):
@@ -64,11 +73,12 @@ def job_info(sl):
         vsz = 0
         rss = 0
         cpu = 0
-        mcpu = 150
+        mcpu = 1000
         ncores = 0
         pid = []
         pro_n = []
         pro_t = []
+        mpro = ""
         for j in R_jobs:
 
             if ( j[0] != u ):
@@ -89,6 +99,11 @@ def job_info(sl):
             if ( c < mcpu ):
                 mcpu = c
                 mpro = pro_name
+
+            if ( mpro == "" ):
+                print( "some error appear, must be stop!" )
+                print( c, mcpu, pro_name, j )
+                exit()
 
             if ( not( pro_name in pro_n ) ):
                 pro_n.append( pro_name )
