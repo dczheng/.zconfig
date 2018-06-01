@@ -67,7 +67,7 @@ def job_info(sl):
         vsz = 0
         rss = 0
         cpu = 0
-        mcpu = 1000
+        mcpu = 10000
         ncores = 0
         pid = []
         pro_n = []
