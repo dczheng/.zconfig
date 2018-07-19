@@ -22,15 +22,6 @@
     </action>
   </item>
 
-  <item label="Thunderbird">
-    <action name="Execute">
-      <command>thunderbird</command>
-      <startupnotify>
-        <enabled>yes</enabled>
-      </startupnotify>
-    </action>
-  </item>
-
   <item label="obconf">
     <action name="Execute">
       <command>obconf</command>
