@@ -36,7 +36,7 @@ then
 elif [ $HOST = 'debian' ]
 then
    # xscreensaver -nosplash &
-    terminator
+    terminator -l "zconf"
 else
     echo "Unsupported host"
 fi
