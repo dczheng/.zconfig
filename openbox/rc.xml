@@ -193,7 +193,7 @@
       </action>
     </keybind>
     <keybind key="C-A-R">
-        <action name="Resize"/>
+      <action name="Resize"/>
     </keybind>
     <keybind key="C-M">
       <action name="ToggleMaximize">
