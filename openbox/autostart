@@ -15,8 +15,11 @@
 # If you want to use XFCE config tools...
 #
 #xfce-mcs-manager &
+
 HOST=`hostname`
+
 flag=`ps aux | grep ibus-daemon | grep -v 'grep'`
+
 if [ $flag'x' = 'x' ]
 then
     ibus-daemon &
