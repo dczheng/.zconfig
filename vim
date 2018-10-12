@@ -13,7 +13,6 @@ set tags=tags
 set autochdir
 let g:tex_conceal = ""
 
-Plugin 'latexlivepreview'
-let g:livepreview_previewer = 'evince'
+let g:livepreview_previewer = 'zathura'
 autocmd Filetype tex setl updatetime=1
 nmap <F12> :LLPStartPreview <cr>
