@@ -189,7 +189,7 @@
     </keybind>
     <keybind key="C-S-B">
       <action name="Execute">
-        <command>chromium</command>
+        <command>firefox</command>
       </action>
     </keybind>
     <keybind key="C-A-R">
