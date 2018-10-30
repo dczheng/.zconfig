@@ -13,9 +13,9 @@
     </action>
   </item>
 
-  <item label="qutebrowser">
+  <item label="chromium">
     <action name="Execute">
-      <command>qutebrowser</command>
+      <command>chromium</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>

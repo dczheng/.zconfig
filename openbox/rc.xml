@@ -189,7 +189,7 @@
     </keybind>
     <keybind key="C-S-B">
       <action name="Execute">
-        <command>qutebrowser</command>
+        <command>chromium</command>
       </action>
     </keybind>
     <keybind key="C-A-R">
