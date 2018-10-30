@@ -13,9 +13,9 @@
     </action>
   </item>
 
-  <item label="Firefox">
+  <item label="qutebrowser">
     <action name="Execute">
-      <command>firefox</command>
+      <command>qutebrowser</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>

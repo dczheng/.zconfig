@@ -187,9 +187,9 @@
     <keybind key="C-A-M">
       <action name="Move"/>
     </keybind>
-    <keybind key="C-A-F">
+    <keybind key="C-S-B">
       <action name="Execute">
-        <command>firefox</command>
+        <command>qutebrowser</command>
       </action>
     </keybind>
     <keybind key="C-A-R">
