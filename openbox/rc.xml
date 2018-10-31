@@ -187,7 +187,7 @@
     <keybind key="C-A-M">
       <action name="Move"/>
     </keybind>
-    <keybind key="C-S-B">
+    <keybind key="C-A-F">
       <action name="Execute">
         <command>firefox</command>
       </action>
