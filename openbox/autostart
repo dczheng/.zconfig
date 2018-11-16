@@ -36,7 +36,7 @@ then
         /home/dczheng/.zconfig/powermanager.py &
     fi
     terminator &
-elif [ $HOST = 'debian' ]
+elif [ $HOST = 'caa' ]
 then
    # xscreensaver -nosplash &
     terminator -l "zconf"

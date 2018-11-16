@@ -1,19 +1,23 @@
 function start_shadowsocks
 
-    set HOST ( hostname )
+    sudo systemctl stop shadowsocks-libev@dczheng.service
 
-    #echo $HOST
+    set ipaddr (ip addr | grep wlp | grep inet | awk '{print $2}' | awk -F '/' '{print $1}')
 
-    switch $HOST
+    #echo $ipaddr
 
-        case 'debian'
-            start_shadowsocks_debian
+    if test -n "$ipaddr"
 
-        case 'archlinux'
-            start_shadowsocks_arch
+        echo "update arch-wlan ($ipaddr) in /etc/hosts ..."
+        sudo sed -i 's/.*arch-wlan/'"$ipaddr"' arch-wlan/' /etc/hosts
 
-        case '*'
-            echo "Unsupported host!"
+        echo "start shadowsocks on arch linux ... "
+        sudo systemctl start shadowsocks-libev@dczheng.service
+
+    else
+
+        echo -e "\033[31mSTART SHADOWSOCKS FILED: network doesn't work!\033[0m"
+        return 0
 
     end
 
