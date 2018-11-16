@@ -1,4 +1,4 @@
 function clean_vim_cache
-    rm ~/.vimview/* -rf
+    rm ~/.vimviews/* -rf
     rm ~/.vimswap/* -rf
 end
