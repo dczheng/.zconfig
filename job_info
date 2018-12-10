@@ -157,9 +157,10 @@ def job_info(sl):
         if "Mem:" in l:
             t = l.split()
             tot_mem = int( t[1] ) / 1024 / 1024
-            #used_mem = int( t[2] ) / 1024 / 1024
+            used_mem0 = int( t[2] ) / 1024 / 1024
             #free_mem = int( t[3] ) / 1024 / 1024
             cached_mem = int( t[6] ) / 1024 / 1024
+    used_mem0 = used_mem0 - cached_mem
     ncpu = os.popen( 'cat /proc/cpuinfo | grep "physical id" | uniq | wc -l ' ).readlines()
     ncpu = int( ncpu[0] )
     nc = os.popen( 'cat /proc/cpuinfo | grep "cpu core"' ).readlines()
@@ -168,8 +169,8 @@ def job_info(sl):
     #print( ncpu, nc )
     tot_cpu = ncpu * nc
     other_info += "cpu: tot %d | used %d | left %d\n"  %( tot_cpu, used_cpu, tot_cpu-used_cpu )
-    other_info += "mem(Gb): tot %.1f | used %.1f | left %.1f | cached %.1f" \
-        %(tot_mem, used_mem, tot_mem-used_mem, cached_mem )
+    other_info += "mem(Gb): tot %.1f | used %.1f (%.1f) | left %.1f | cached %.1f" \
+            %(tot_mem, used_mem0, used_mem, tot_mem-used_mem, cached_mem )
     print( other_info )
 
 
