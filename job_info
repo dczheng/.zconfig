@@ -58,7 +58,6 @@ def job_info(sl):
     #info_fmt2 = "%10s %5i %8.2f %8.2f %8.2f %6.2f %" + str(nl) + "s %-s\n"
     info_buf = info_fmt1%( "user", "cpus", "cpu(%)", "vsz(Gb)", "rss(Gb)", "mcpu", "mpro", "programs" )
     used_cpu = 0
-    used_mem = 0
 
     #print( R_jobs )
     #print( R_users )
@@ -124,7 +123,6 @@ def job_info(sl):
         rss /= ( 1024.0 * 1024.0 )
 
         used_cpu += ncores
-        used_mem += rss
 
         l = '|'
         for i in range( len( pro_n ) ):
@@ -157,10 +155,12 @@ def job_info(sl):
         if "Mem:" in l:
             t = l.split()
             tot_mem = int( t[1] ) / 1024 / 1024
-            used_mem0 = int( t[2] ) / 1024 / 1024
             #free_mem = int( t[3] ) / 1024 / 1024
             cached_mem = int( t[6] ) / 1024 / 1024
-    used_mem0 = used_mem0 - cached_mem
+        if "-/+" in l:
+            t = l.split()
+            used_mem = int( t[2] ) / 1024 / 1024
+
     ncpu = os.popen( 'cat /proc/cpuinfo | grep "physical id" | uniq | wc -l ' ).readlines()
     ncpu = int( ncpu[0] )
     nc = os.popen( 'cat /proc/cpuinfo | grep "cpu core"' ).readlines()
@@ -169,8 +169,8 @@ def job_info(sl):
     #print( ncpu, nc )
     tot_cpu = ncpu * nc
     other_info += "cpu: tot %d | used %d | left %d\n"  %( tot_cpu, used_cpu, tot_cpu-used_cpu )
-    other_info += "mem(Gb): tot %.1f | used %.1f (%.1f) | left %.1f | cached %.1f" \
-            %(tot_mem, used_mem0, used_mem, tot_mem-used_mem, cached_mem )
+    other_info += "mem(Gb): tot %.1f | used %.1f | left %.1f | cached %.1f" \
+            %(tot_mem, used_mem, tot_mem-used_mem, cached_mem )
     print( other_info )
 
 
