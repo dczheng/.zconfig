@@ -1,3 +1,3 @@
 function pdf
-    zathura "$argv[1]" &
+    evince "$argv[1]" &
 end
