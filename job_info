@@ -21,7 +21,8 @@ def job_info(sl):
     for i in job_info:
         t = i.split()
 
-        if t[10] in Remove_pro:
+        if t[10] in Remove_pro or 'job_info' in t:
+            #print( t[10] )
             continue
 
         if ( t[7][0] == 'R' ):
