@@ -181,7 +181,7 @@
     <!-- Keybindings for desktop switching -->
     <keybind key="C-A-T">
       <action name="Execute">
-        <command>terminator</command>
+        <command>st</command>
       </action>
     </keybind>
     <keybind key="C-A-M">
@@ -711,7 +711,7 @@
   </menu>
   <applications>
     <application class="*">
-        <decor>no</decor>
+      <decor>no</decor>
     </application>
     <!--
   # this is an example with comments through out. use these to make your

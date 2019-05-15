@@ -35,11 +35,10 @@ then
     then
         /home/dczheng/.zconfig/powermanager.py &
     fi
-    terminator &
+    /home/dczheng/local/bin/st
 elif [ $HOST = 'caa' ]
 then
-   # xscreensaver -nosplash &
-    terminator -l "zconf"
+    /home/dczheng/local/bin/st
 else
     echo "Unsupported host"
 fi
