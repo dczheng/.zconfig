@@ -11,7 +11,7 @@
 HOST=`hostname`
 if [ $HOST = 'caa' ]
 then
-    xrandr --output DVI-D-1 --primary --mode 1600x900 --pos 1633x0 --rotate normal --output HDMI-1 --off --output VGA-2 --mode 1600x900 --pos 0x0 --rotate normal --output VGA1 --off --output VIRTUAL1 --off
+    xrandr --output DVI-D-1 --primary --mode 1600x900 --pos 1636x0 --rotate normal --output HDMI-1 --off --output VGA-1 --mode 1600x900 --pos 0x0 --rotate normal
     xset s off
     xset s off -dpms
 else
@@ -20,5 +20,6 @@ fi
 #!/bin/sh
 #!/bin/sh
 
+#!/bin/sh
 #!/bin/sh
 #!/bin/sh

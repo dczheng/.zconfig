@@ -2,9 +2,15 @@ function start_shadowsocks
 
     sudo systemctl stop shadowsocks-libev@dczheng.service
 
-    set ipaddr (ip addr | grep wlp | grep inet | awk '{print $2}' | awk -F '/' '{print $1}')
+    echo "hostname: " $hostname
 
-    #echo $ipaddr
+    if test "$hostname" = "caa"
+        set ipaddr (ip addr | grep enp3s0 | grep inet | awk '{print $2}' | awk -F '/' '{print $1}')
+    else
+        set ipaddr (ip addr | grep wlp | grep inet | awk '{print $2}' | awk -F '/' '{print $1}')
+    end
+
+    echo "IP: " $ipaddr
 
     if test -n "$ipaddr"
 
