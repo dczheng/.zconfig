@@ -22,4 +22,4 @@ then
 else
     x=""
 fi
-echo -e $x
+echo -en $x
