@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-//static char *font = "Liberation Mono:pixelsize=18:antialias=true:autohint=true";
-static char *font = "ubuntumono:size=12";
+static char *font = "Liberation Mono:pixelsize=16:antialias=true:autohint=true";
+//static char *font = "ubuntumono:size=12";
 static int borderpx = 1;
 
 /*
@@ -129,7 +129,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 4;
+static unsigned int cursorshape = 2;
 
 /*
  * Default columns and rows numbers
