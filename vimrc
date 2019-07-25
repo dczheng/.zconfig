@@ -27,18 +27,13 @@ endfunction
 "let g:indent_guides_enable_on_vim_startup = 1
 "set rtp+=~/.vim/snippets
 "set rtp+=~/.vim/neosnippet
-"set rtp+=~/.vim/lightline
-"set laststatus=2
-"if !has( 'gui_runing')
-"	set t_Co=256
-"endif
 "set rtp+=~/.vim/signify	
 "let g:signify_realtime=1
 
 set rtp+=~/.vim/syntastic
 set rtp+=~/.vim/surround	
 set rtp+=~/.vim/auto-pairs
-
+set rtp+=~/.vim/airline
 
 set rtp+=~/.vim/neocomplete
 let g:neocomplete#enable_at_startup = 1
