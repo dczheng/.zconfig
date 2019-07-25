@@ -70,6 +70,7 @@ syntax on
 "-----------------------------------------------------
 
 "---------------------keymap--------------------------
+inoremap /* /*<CR>*/<ESC>O
 "inoremap ' ''<ESC>i
 "inoremap " ""<ESC>i
 "inoremap ( ()<ESC>i
