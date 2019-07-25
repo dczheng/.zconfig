@@ -1,2 +1,2 @@
 # .zconfig
-my some configuration files.
+Some configuration files.
