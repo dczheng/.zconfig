@@ -62,6 +62,7 @@ set undofile
 set undodir=$HOME/.vimundo
 set undolevels=1000
 set undoreload=10000
+set hlsearch
 
 colorscheme koehler
 setlocal foldmethod=syntax
