@@ -40,6 +40,7 @@ set rtp+=~/.vim/auto-pairs
 
 set rtp+=~/.vim/neocomplete
 let g:neocomplete#enable_at_startup = 1
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "---------------------plugin--------------------------
 
