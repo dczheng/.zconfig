@@ -33,10 +33,12 @@ endfunction
 "	set t_Co=256
 "endif
 
-set rtp+=~/.vim/signify	
 set rtp+=~/.vim/syntastic
 set rtp+=~/.vim/surround	
 set rtp+=~/.vim/auto-pairs
+
+set rtp+=~/.vim/signify	
+let g:signify_realtime=1
 
 set rtp+=~/.vim/neocomplete
 let g:neocomplete#enable_at_startup = 1
