@@ -1,10 +1,14 @@
 set nospell
-colorscheme blackbeauty
+set nu
+colorscheme koehler
 setlocal foldmethod=syntax
-Plugin 'Tagbar'
-Plugin 'SuperTab'
-Plugin 'clang-complete'
-Plugin 'neocomplete'
+set cursorline
+
+"Plugin 'Tagbar'
+"Plugin 'SuperTab'
+"Plugin 'clang-complete'
+"Plugin 'neocomplete'
+
 nmap <f10> :TagbarToggle<CR>
 set fileencodings=utf-8,gbk,gb2312
 set termencoding=utf-8
