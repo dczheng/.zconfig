@@ -10,3 +10,6 @@
 [submodule "vim/pack/my-plugins/start/syntastic"]
 	path = vim/pack/my-plugins/start/syntastic
 	url = git@github.com:vim-syntastic/syntastic.git
+[submodule "vim/pack/my-plugins/start/auto-pairs"]
+	path = vim/pack/my-plugins/start/auto-pairs
+	url = git@github.com:jiangmiao/auto-pairs.git
