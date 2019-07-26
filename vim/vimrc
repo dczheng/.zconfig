@@ -30,6 +30,7 @@ set autoindent
 set smartindent
 set undofile
 set undodir=$HOME/.vimundo
+set directory=$HOME/.vimswap
 set undolevels=1000
 set undoreload=10000
 set hlsearch
