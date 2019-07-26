@@ -1,6 +1,3 @@
-[submodule "vim/pack/my-plugins/start/vim-airline"]
-	path = vim/pack/my-plugins/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
 [submodule "vim/pack/my-plugins/start/neocomplete"]
 	path = vim/pack/my-plugins/start/neocomplete
 	url = git@github.com:Shougo/neocomplete.vim.git
@@ -13,3 +10,6 @@
 [submodule "vim/pack/my-plugins/start/auto-pairs"]
 	path = vim/pack/my-plugins/start/auto-pairs
 	url = git@github.com:jiangmiao/auto-pairs.git
+[submodule "vim/pack/my-plugins/start/vim-airline"]
+	path = vim/pack/my-plugins/start/vim-airline
+	url = git@github.com:vim-airline/vim-airline.git
