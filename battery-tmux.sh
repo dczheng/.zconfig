@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# 
+# dczheng
+# created 2019-07-27
+#
+
 warning_icon="#[fg=red][\U26A0"
 charging_icon="#[fg=green][\U26A1"
 if [ $(hostname) == archlinux"" ]
