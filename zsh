@@ -16,7 +16,7 @@ arch_debian_env() {
 }
 
 arch_env() {
-    $ZCONFIG/cowsay.py "Welcome to dczheng's Arch Linux"
+    cowsay.py "Welcome to dczheng's Arch Linux"
     arch_debian_env
     alias cdp="cd /home/dczheng/data/documents/physics"
     alias cdm="cd /home/dczheng/data/documents/math"
@@ -76,7 +76,7 @@ debian_env() {
     #xset m 20 1
     screenfetch
     #cowsay "Welcome to dczheng's Debian Linux"
-    $ZCONFIG/cowsay.py "Welcome to dczheng's Debian Linux"
+    cowsay.py "Welcome to dczheng's Debian Linux"
 }
 
 start_synergy() {
