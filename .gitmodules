@@ -13,3 +13,6 @@
 [submodule "vim/pack/my-plugins/start/vim-airline"]
 	path = vim/pack/my-plugins/start/vim-airline
 	url = git@github.com:vim-airline/vim-airline.git
+[submodule "vim/pack/my-plugins/start/ctrlp.vim"]
+	path = vim/pack/my-plugins/start/ctrlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim.git
