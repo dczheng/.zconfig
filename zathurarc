@@ -1,4 +1,4 @@
-set recojlor "true"
+set recolor "true"
 set recolor-keephue "true"
 set recolor-reverse-video "true"
 set font "monospace normal 12"
