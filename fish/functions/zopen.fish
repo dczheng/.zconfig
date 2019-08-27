@@ -6,7 +6,7 @@ function zopen
     set filetype (string split "." -- $argv[1])[2]
     switch $filetype
 
-        case "pdf"
+        case "pdf" "djvu"
             printf "Open `%s` with %s\n" $argv[1] $pdf_opener
             $pdf_opener  $argv[1] &
 
