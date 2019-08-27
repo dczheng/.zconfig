@@ -3,7 +3,7 @@ function zopen
     set txt_opener  gedit
     set img_opener  eog 
 
-    set filetype (string split "." -- $argv[1])[2]
+    set filetype (string split "." -- $argv[1])[-1]
     switch $filetype
 
         case "pdf" "djvu"
