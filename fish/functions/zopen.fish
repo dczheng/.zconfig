@@ -14,7 +14,7 @@ function zopen
             printf "Open `%s` with %s\n" $argv[1] $txt_opener
             $txt_opener  $argv[1] &
 
-        case "png" "jpg" "jpeb" "bmp"
+        case "png" "jpg" "jpeg" "bmp"
             printf "Open `%s` with %s\n" $argv[1] $img_opener
             $img_opener  $argv[1] &
 
