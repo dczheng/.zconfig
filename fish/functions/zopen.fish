@@ -10,7 +10,7 @@ function zopen
             printf "Open `%s` with %s\n" $argv[1] $pdf_opener
             $pdf_opener  $argv[1] &
 
-        case "txt"
+        case "txt" "tex" "bib"
             printf "Open `%s` with %s\n" $argv[1] $txt_opener
             $txt_opener  $argv[1] &
 
