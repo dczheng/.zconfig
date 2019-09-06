@@ -1,8 +1,8 @@
 function fish_prompt
-    #set_color yellow 
     #set prompt_dir (pwd)
-    #set prompt_dir (string split / (pwd))
-    #echo -e " $prompt_dir"
+    set prompt_dir (string split / (pwd))
+    set_color green 
+    echo -en "$prompt_dir[-1]"
     set_color red 
     echo -en " > "
     set color normal
