@@ -16,7 +16,7 @@ def job_info(sl):
 
     R_jobs = []
     R_users = []
-    Remove_pro = [ 'ps', 'top', 'tmux', 'grep', 'htop', 'sshd' ]
+    Remove_pro = [ 'ps', 'top', 'tmux', 'grep', 'htop', 'sshd:' ]
 
     for i in job_info:
         t = i.split()
