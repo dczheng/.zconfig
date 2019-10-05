@@ -24,7 +24,7 @@ echo "---------------------------------------------------"
 
 if [ ! -n "$1" ]
 then    
-SS_VERSION=3.2.5
+SS_VERSION=3.3.1
 else
 SS_VERSION=$1
 fi
