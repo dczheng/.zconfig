@@ -7,7 +7,7 @@
 
 warning_icon="#[fg=red][\U26A0"
 charging_icon="#[fg=green][\U26A1"
-if [ `hostname` = archlinux"" ]
+if [ `hostname` = "archlinux" ]
 then
     s=`upower -i $(upower -e | grep -E 'battery|DisplayDevice') | awk '/state:/ {print $2}'`
     p=`upower -i $(upower -e | grep -E 'battery|DisplayDevice') | awk '/percentage:/ {print $2}'`
