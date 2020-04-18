@@ -54,7 +54,7 @@ nmap <F12> :UndotreeToggle<CR>
 func! MyRun()
     exec "w"
     if &filetype == "python"
-        exec "!time python %"
+        exec "!time python3 %"
     elseif &filetype == "sh"
         exec "!time bash %"
     endif
