@@ -22,7 +22,7 @@ set expandtab
 set shiftwidth=4
 set mouse=a
 set autochdir
-set fileencodings=utf-8,gbk,gb2312
+set fileencodings=utf-8,gbk,gb2313
 set termencoding=utf-8
 set encoding=utf-8
 set backspace=indent,eol,start
@@ -50,5 +50,17 @@ inoremap /* /*<CR>*/<ESC>O
 "inoremap [ []<ESC>i
 "inoremap { {<CR>}<ESC>O
 nmap <F12> :UndotreeToggle<CR>
+
+func! MyRun()
+    exec "w"
+    if &filetype == "python"
+        exec "!time python %"
+    elseif &filetype == "sh"
+        exec "!time bash %"
+    endif
+endfunc
+
+map <F5> :call MyRun()<CR>
+    
 
 "---------------------keymap--------------------------
