@@ -1,29 +1,95 @@
 #!/usr/bin/env python3
-import json
-from urllib import request, parse
 import sys
- 
+import uuid
+import hashlib
+import urllib.request
+import time
+import os
+import json
 
-if len(sys.argv) < 2:
-    print( "Please input a text!" )
-    exit()
+YOUDAO_URL = 'https://openapi.youdao.com/api'
 
-content = sys.argv[1]
-url='http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&sessionFrom=http://fanyi.youdao.com/'
-data = {  
-    'i': content, \
-    'from': 'AUTO', \
-    'to': 'AUTO', \
-    'smartresult': 'dict', \
-    'client': 'fanyideskweb', \
-    'doctype': 'json', \
-    'version': '2.1', \
-    'keyfrom': 'fanyi.web', \
-    'action': 'FY_BY_CLICKBUTTION', \
-    'typoResult': 'false' }
+def encrypt(signStr):
+    hash_algorithm = hashlib.sha256()
+    hash_algorithm.update(signStr.encode('utf-8'))
+    return hash_algorithm.hexdigest()
 
-data=parse.urlencode(data).encode('utf-8')
-response=request.urlopen(url,data)
-html=response.read().decode('utf-8')
-target=json.loads(html)
-print( "%s --> %s"%(content, target['translateResult'][0][0]['tgt']) )
+
+def truncate(q):
+    if q is None:
+        return None
+    size = len(q)
+    return q if size <= 20 else q[0:10] + str(size) + q[size - 10:size]
+
+
+def trans( q ):
+
+    data = {}
+    data['from'] = 'EN'
+    data['to'] = 'zh-CHS'
+    data['signType'] = 'v3'
+    curtime = str(int(time.time()))
+    data['curtime'] = curtime
+    salt = str(uuid.uuid1())
+    signStr = APP_KEY + truncate(q) + salt + curtime + APP_SECRET
+    sign = encrypt(signStr)
+    data['appKey'] = APP_KEY
+    data['q'] = q
+    data['salt'] = salt
+    data['sign'] = sign
+
+    data = urllib.parse.urlencode(data).encode('utf-8')
+
+    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    req = urllib.request.Request(YOUDAO_URL, data=data, headers=headers)
+    response = urllib.request.urlopen(req)
+    r = json.loads( response.read().decode() )
+    #for k in r.keys():
+    #    print( k, '---', r[k] )
+    if 'web' not in r.keys():
+        print( 'Can not find a translation for `%s`.'%q )
+        exit()
+
+    return r['web'], r['basic']
+
+def my_print( data ):
+
+    d = data[0]
+    sep_str = '=>' 
+
+    print( sep_str )
+    for l in d:
+        print( "%s: %s"%( l['key'], ','.join( l['value'] ) ) )
+    print( sep_str )
+
+    d = data[1]
+    if 'wfs' in d.keys():
+        s = ''
+        for l in d['wfs']:
+            s += ':'.join( [l['wf']['name'], l['wf']['value']] ) + '\n'
+        print( s, end='' )
+        print( sep_str )
+
+    if 'explains' in d.keys():
+        for l in d['explains']:
+            print( l )
+        print( sep_str )
+
+def main():
+    global APP_KEY
+    global APP_SECRET
+
+    APP_KEY = os.getenv( 'YOUDAO_APP_KEY' )
+    APP_SECRET = os.getenv( 'YOUDAO_APP_SECRET' )
+
+    if APP_KEY is None or APP_SECRET is None:
+        print( "Can not find the enviroment variables YOUDAO_APP_KEY or YOUDAO_APP_SECRET!" )
+        exit()
+
+    r = trans( ' '.join(sys.argv[1:]) )
+    my_print( r )
+
+if __name__ == '__main__':
+    main()
+
+
