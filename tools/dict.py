@@ -44,35 +44,42 @@ def trans( q ):
     req = urllib.request.Request(YOUDAO_URL, data=data, headers=headers)
     response = urllib.request.urlopen(req)
     r = json.loads( response.read().decode() )
-    #for k in r.keys():
-    #    print( k, '---', r[k] )
-    if 'web' not in r.keys():
+    if 'web' not in r.keys() and 'basic' not in r.keys():
         print( 'Can not find a translation for `%s`.'%q )
         exit()
 
-    return r['web'], r['basic']
+    rr = [ None, None ]
+    if 'basic' in r.keys():
+        rr[0] = r['basic']
+
+    if 'web' in r.keys():
+        rr[1] = r['web']
+
+    return rr
 
 def my_print( data ):
 
-    d = data[0]
     sep_str = '=>' 
+    print( sep_str )
 
-    print( sep_str )
-    for l in d:
-        print( "%s: %s"%( l['key'], ','.join( l['value'] ) ) )
-    print( sep_str )
+    d = data[0]
+    if d is not None:
+        if 'explains' in d.keys():
+            for l in d['explains']:
+                print( l )
+            print( sep_str )
+
+        if 'wfs' in d.keys():
+            s = ''
+            for l in d['wfs']:
+                s += ':'.join( [l['wf']['name'], l['wf']['value']] ) + '\n'
+            print( s, end='' )
+            print( sep_str )
 
     d = data[1]
-    if 'wfs' in d.keys():
-        s = ''
-        for l in d['wfs']:
-            s += ':'.join( [l['wf']['name'], l['wf']['value']] ) + '\n'
-        print( s, end='' )
-        print( sep_str )
-
-    if 'explains' in d.keys():
-        for l in d['explains']:
-            print( l )
+    if d is not None:
+        for l in d:
+            print( "%s: %s"%( l['key'], ','.join( l['value'] ) ) )
         print( sep_str )
 
 def main():
