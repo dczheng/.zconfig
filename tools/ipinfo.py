@@ -1,20 +1,30 @@
 #!/usr/bin/env python3
 
 import sys
-import urllib.request
 import requests
+import json
 
 ip = sys.argv[1]
 
-API_URL = "https://ipinfo.io"
+#API_URL = "http://ip-api.com/json/%s"%ip
+API_URL = "http://ip-api.com/json/%s"%ip
 
-headers = {
-    "user-agent": "IPinfoClient/Python{version}/2.0.0".format(
-        version=sys.version_info[0]
-    ),
-    "accept": "application/json",
-}
+#p = { 'lang': 'zh-CN' }
+#r = requests.get( API_URL, params=p )
 
-req = requests.get( "%s/%s"%(API_URL, ip), headers=headers )
+r = requests.get( API_URL ).text
+info = json.loads(r)
 
-print( req.json() )
+#for k in info.keys():
+#    print( "%s: %s"%(k, info[k]) )
+
+if 'message' in info.keys():
+    print( info['message'] )
+    exit()
+
+s = '%s %s\n%s\n%s'%(info['country'],
+                   info['city'], 
+                   '.'.join(info['isp'].split()),
+                   '.'.join(info['org'].split()),
+                   )
+print( s )
