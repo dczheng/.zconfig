@@ -6,6 +6,9 @@ function my_welcome
         echo ">>>>>>>>>>>>>>>>>>>"
         hostnamectl | egrep -v "(ID|Chassis)"
         echo ">>>>>>>>>>>>>>>>>>>"
+        echo "Last Login:"
+        lastlog | sed -n '3,$p' | egrep -v "(Never| tty)"
+        echo ">>>>>>>>>>>>>>>>>>>"
         date
     end
 end
