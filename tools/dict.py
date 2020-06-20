@@ -46,7 +46,7 @@ def trans( q ):
     r = json.loads( response.read().decode() )
     if 'web' not in r.keys() and 'basic' not in r.keys():
         print( 'Can not find a translation for `%s`.'%q )
-        exit()
+        sys.exit()
 
     rr = [ None, None ]
     if 'basic' in r.keys():
@@ -91,10 +91,19 @@ def main():
 
     if APP_KEY is None or APP_SECRET is None:
         print( "Can not find the enviroment variables YOUDAO_APP_KEY or YOUDAO_APP_SECRET!" )
-        exit()
+        sys.exit()
+
+    if sys.argv[1] == '-i':
+        while True:
+            t = input( ">>> " )
+            if t in 'Qq':
+                sys.exit()
+            r = trans( ' '.join(sys.argv[1:]) )
+            my_print( r )
 
     r = trans( ' '.join(sys.argv[1:]) )
     my_print( r )
+
 
 if __name__ == '__main__':
     main()
