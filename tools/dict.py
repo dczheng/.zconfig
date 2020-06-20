@@ -98,7 +98,7 @@ def main():
             t = input( ">>> " )
             if t in 'Qq':
                 sys.exit()
-            r = trans( ' '.join(sys.argv[1:]) )
+            r = trans( t )
             my_print( r )
 
     r = trans( ' '.join(sys.argv[1:]) )
