@@ -44,12 +44,12 @@ syntax on
 "---------------------keymap--------------------------
 
 inoremap /* /*<CR>*/<ESC>O
+inoremap <div> <div><CR></div><ESC>O
 "inoremap ' ''<ESC>i
 "inoremap " ""<ESC>i
 "inoremap ( ()<ESC>i
 "inoremap [ []<ESC>i
 "inoremap { {<CR>}<ESC>O
-nmap <F12> :UndotreeToggle<CR>
 
 func! MyRun()
     exec "w"
@@ -59,8 +59,10 @@ func! MyRun()
         exec "!time bash %"
     endif
 endfunc
-
 map <F5> :call MyRun()<CR>
+
+map <F6> :NERDTreeToggle<CR>
+map <F12> :UndotreeToggle<CR>
     
 
 "---------------------keymap--------------------------
