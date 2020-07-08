@@ -3,7 +3,7 @@ Some configuration files.
 
 Clone with submodules:
 
-    $ git clone --recurse-submodules https://github.com/dczheng/.zconfig
+    $ git clone --recurse-submodules https://github.com/dczheng/.zconfig.git
 
 Or to initialize the submodules included in this repo:
 

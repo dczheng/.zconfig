@@ -36,7 +36,7 @@ set undoreload=10000
 set hlsearch
 
 colorscheme koehler
-setlocal foldmethod=syntax
+setlocal foldmethod=indent
 syntax on
 
 "-----------------------------------------------------
