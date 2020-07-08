@@ -1,0 +1,27 @@
+[submodule "vim/pack/my-plugins/start/auto-pairs"]
+	path = vim/pack/my-plugins/start/auto-pairs
+	url = http://github.com/jiangmiao/auto-pairs.git
+[submodule "vim/pack/my-plugins/start/vim-surround"]
+	path = vim/pack/my-plugins/start/vim-surround
+	url = http://github.com/tpope/vim-surround.git
+[submodule "vim/pack/my-plugins/start/syntastic"]
+	path = vim/pack/my-plugins/start/syntastic
+	url = http://github.com/vim-syntastic/syntastic.git
+[submodule "vim/pack/my-plugins/start/neocomplete"]
+	path = vim/pack/my-plugins/start/neocomplete
+	url = http://github.com/Shougo/neocomplete.vim.git
+[submodule "vim/pack/my-plugins/start/vim-airline"]
+	path = vim/pack/my-plugins/start/vim-airline
+	url = http://github.com/vim-airline/vim-airline.git
+[submodule "vim/pack/my-plugins/start/vim-lastplace"]
+	path = vim/pack/my-plugins/start/vim-lastplace
+	url = http://github.com/farmergreg/vim-lastplace.git
+[submodule "vim/pack/my-plugins/start/nerdtree"]
+	path = vim/pack/my-plugins/start/nerdtree
+	url = http://github.com/preservim/nerdtree.git
+[submodule "vim/pack/my-plugins/start/undotree"]
+	path = vim/pack/my-plugins/start/undotree
+	url = https://github.com/mbbill/undotree.git
+[submodule "vim/pack/my-plugins/start/ctrlp.vim"]
+	path = vim/pack/my-plugins/start/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
