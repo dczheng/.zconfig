@@ -28,3 +28,6 @@
 [submodule "vim/pack/my-plugins/start/vim-instant-markdown"]
 	path = vim/pack/my-plugins/start/vim-instant-markdown
 	url = https://github.com/suan/vim-instant-markdown.git
+[submodule "vim/pack/my-plugins/start/markdown-preview.nvim"]
+	path = vim/pack/my-plugins/start/markdown-preview.nvim
+	url = https://github.com/iamcco/markdown-preview.nvim.git
