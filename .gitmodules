@@ -25,3 +25,6 @@
 [submodule "vim/pack/my-plugins/start/ctrlp.vim"]
 	path = vim/pack/my-plugins/start/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim/pack/my-plugins/start/vim-instant-markdown"]
+	path = vim/pack/my-plugins/start/vim-instant-markdown
+	url = https://github.com/suan/vim-instant-markdown.git
