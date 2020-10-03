@@ -45,7 +45,7 @@ syntax on
 
 "---------------------keymap--------------------------
 
-inoremap /* /*<CR>*/<ESC>O
+inoremap /* /**/<ESC>hi
 inoremap <div> <div><CR></div><ESC>O
 "inoremap ' ''<ESC>i
 "inoremap " ""<ESC>i
