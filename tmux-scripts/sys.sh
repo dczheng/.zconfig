@@ -7,9 +7,8 @@
 
 if [ `hostname` = "void" ]
 then
-    s="["
-    s=$s`$ZCONFIG/tmux-scripts/net.sh`
-    s=$s`$ZCONFIG/tmux-scripts/bat.sh`
-    s=$s"]"
+    net=`$ZCONFIG/tmux-scripts/net.sh`
+    bat=`$ZCONFIG/tmux-scripts/bat.sh`
+    s="#[fg=green][$net$bat#[fg=green]]"
 fi
 echo -en $s
