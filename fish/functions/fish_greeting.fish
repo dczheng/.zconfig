@@ -3,7 +3,7 @@ function fish_greeting
     if status is-login
         clear 
         set sys (hostname)
-        cowsay.py "$USER (*.*) Welcome to `$sys` (*.*)"
+        cowsay.py "$USER (*.*) Welcome to $sys (*.*)"
         #echo ">>>>>>>>>>>>>>>>>>>"
         #hostnamectl | egrep -v "(ID|Chassis)"
         #echo ">>>>>>>>>>>>>>>>>>>"
