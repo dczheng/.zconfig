@@ -4,7 +4,7 @@ function fish_prompt
     set_color green 
     set h (hostname)
     echo -en "$h.$USER.$prompt_dir[-1]"
-    set_color red 
-    echo -en " > "
+    set_color yellow
+    echo -en " 💯👀 "
     set color normal
 end
