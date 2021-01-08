@@ -18,7 +18,7 @@ then
 
     if [ $s == '1' ]
     then
-        i="⚡"
+        i="🔌"
     else
         i="🔋"
     fi
