@@ -7,7 +7,6 @@
 
 p=`cat /sys/class/power_supply/BAT1/capacity`
 s=`cat /sys/class/power_supply/AC/online`
-p=9
 
 if [ $p -lt 10 ]
 then
