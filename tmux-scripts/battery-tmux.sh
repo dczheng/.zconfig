@@ -4,25 +4,26 @@
 # dczheng
 # created 2019-07-27
 #
-
-warning_icon="#[fg=red][\U26A0"
-charging_icon="#[fg=green][\U26A1"
 if [ `hostname` = "void" ]
 then
-    s=`upower -i $(upower -e | grep -E 'battery|DisplayDevice') | awk '/state:/ {print $2}'`
-    p=`upower -i $(upower -e | grep -E 'battery|DisplayDevice') | awk '/percentage:/ {print $2}'`
-    pp=`echo $p | sed 's/%//'`
+    p=`cat /sys/class/power_supply/BAT1/capacity`
+    s=`cat /sys/class/power_supply/AC/online`
 
-    x="#[fg=green][$p]"
-    if [ $pp -lt 10 ]
+    if [ $p -lt 10 ]
     then
-        x="$warning_icon $p]"
+        c="red"
+    else
+        c="green"
     fi
 
-    if [ $s = 'charging' ]
+    if [ $s == '1' ]
     then
-        x="$charging_icon $p]"
+        i="⚡"
+    else
+        i="🔋"
     fi
+
+    x="#[fg=$c][$i$p%]"
 
 else
     x=""
