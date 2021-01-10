@@ -5,7 +5,7 @@
 # created 2021-01-08
 #
 
-if [ `hostname` = "void" ]
+if [ `hostname` = "LFS" ]
 then
     net=`$ZCONFIG/tmux-scripts/net.sh`
     bat=`$ZCONFIG/tmux-scripts/bat.sh`
