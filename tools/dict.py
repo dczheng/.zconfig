@@ -7,7 +7,7 @@ import time
 import os
 import json
 
-YOUDAO_URL = 'https://openapi.youdao.com/api'
+YOUDAO_URL = 'http://openapi.youdao.com/api'
 
 def encrypt(signStr):
     hash_algorithm = hashlib.sha256()
