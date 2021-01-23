@@ -1,5 +1,4 @@
 #!/bin/bash
-#sudo systemctl start bluetooth.service
 #bluetoothctl
 #[bluetooth]# power on
 #[bluetooth]# agent on
@@ -10,5 +9,6 @@
 #[bluetooth]# connect XX:XX:XX:XX:XX
 #[bluetooth]# exit
 
-bluetoothctl power on
-bluetoothctl connect 90:7F:61:00:03:65
+#bluetoothctl power on
+#bluetoothctl connect 90:7F:61:00:03:65
+bluetoothctl connect C0:ED:46:6D:D3:36  
