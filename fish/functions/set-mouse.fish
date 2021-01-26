@@ -18,7 +18,7 @@ function set-mouse
 
     set opt "libinput Button Scrolling Button"
     echo $opt
-    xinput set-prop $argv[1] $opt 3
+    xinput set-prop $argv[1] $opt 2
 
     xinput set-button-map $argv[1] 1 2 3
     xinput get-button-map $argv[1]
