@@ -4,7 +4,7 @@ function touchpad
        return
     end
     
-    set h (hostname)
+    set h (cat /etc/hostname)
     set a $argv[1]
 
     if [ $h = "void" ]
